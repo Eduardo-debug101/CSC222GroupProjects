@@ -19,6 +19,7 @@ public class Hand {
 		s = s + "\n";
 		return s;
 	}
+	
 
 	public ArrayList<Card> getCards() {
 		return cards;
