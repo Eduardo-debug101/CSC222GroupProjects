@@ -46,9 +46,9 @@ public class PlayCards {
 		System.out.println(comp.displayPlayer());
 		
 		System.out.println("***Lets start the game***");
-		for(int i=0; i<17; i++) {
-			System.out.println();
-		}
+		//for(int i=0; i<17; i++) {
+		System.out.println(p1.toString());
+		
 		
 		//System.out.println("\nShuffled cards:");
 		//System.out.println(doc.toString());

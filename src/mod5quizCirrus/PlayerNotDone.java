@@ -29,7 +29,7 @@ public class PlayerNotDone {
 	
 	public String toString() {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		return name + " bet " + nf.format(amtMoney) + " and the card was"
+		return name + " bet " + nf.format(amtMoney) + " and the card was " + hand.getCards();
 	}
 
 	public String getName() {
