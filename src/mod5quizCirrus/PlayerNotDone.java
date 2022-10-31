@@ -26,6 +26,11 @@ public class PlayerNotDone {
 		// Changed wording to match sample output - Eduardo
 		return name + " is betting " + nf.format(amtMoney) + ".  Their hand is: " + hand.displayHand();
 	}
+	
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		return name + " bet " + nf.format(amtMoney) + " and the card was"
+	}
 
 	public String getName() {
 		return name;

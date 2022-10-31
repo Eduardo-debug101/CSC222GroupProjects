@@ -37,12 +37,18 @@ public class PlayCards {
 		doc.shuffle();
 		Hand handOne = getHand(doc);
 		Hand handTwo = getHand(doc);
+		Hand handComp = getHand(doc);
 		PlayerNotDone p1 = new PlayerNotDone(playerOne, handOne, betOne);
 		System.out.println(p1.displayPlayer()); 
 		PlayerNotDone p2 = new PlayerNotDone(playerTwo, handTwo, betTwo);
 		System.out.println(p2.displayPlayer());
+		PlayerNotDone comp = new PlayerNotDone("computer", handComp, 100);
+		System.out.println(comp.displayPlayer());
 		
 		System.out.println("***Lets start the game***");
+		for(int i=0; i<17; i++) {
+			System.out.println();
+		}
 		
 		//System.out.println("\nShuffled cards:");
 		//System.out.println(doc.toString());
