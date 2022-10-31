@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="mod5quizCirrus.Card" project="CSC222GroupProjects" 
+    file="/CSC222GroupProjects/src/mod5quizCirrus/Card.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="130" x="295" y="-13"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="mod5quizCirrus.DeckOfCards" project="CSC222GroupProjects" 
+    file="/CSC222GroupProjects/src/mod5quizCirrus/DeckOfCards.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="820" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="mod5quizCirrus.Hand" project="CSC222GroupProjects" 
+    file="/CSC222GroupProjects/src/mod5quizCirrus/Hand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="560" y="474"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="mod5quizCirrus.PlayCards" project="CSC222GroupProjects" 
+    file="/CSC222GroupProjects/src/mod5quizCirrus/PlayCards.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="863" y="467"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="mod5quizCirrus.PlayerNotDone" project="CSC222GroupProjects" 
+    file="/CSC222GroupProjects/src/mod5quizCirrus/PlayerNotDone.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="164" y="421"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="6">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="7" name="cards"/>      
+      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="9">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="10" name="deck"/>      
+      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="13" name="hand"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
