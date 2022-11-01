@@ -15,7 +15,7 @@ public class Hand {
 	public String displayHand() {
 		String s = "";
 		for (int i=0;i<cards.size();i++)
-			s = s + cards.get(i).toString() + "  ";
+			s = s + cards.get(i).toString() + " ";
 		s = s + "\n";
 		return s;
 	}

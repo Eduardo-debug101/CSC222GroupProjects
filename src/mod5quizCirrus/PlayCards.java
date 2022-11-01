@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class PlayCards {
 
 	public static void main(String[] args) {
+		int GAMES = 17;
 		Scanner scan = new Scanner(System.in);
 		
 		printStart(); // calls printStart method - Eduardo
@@ -38,18 +39,33 @@ public class PlayCards {
 		Hand handOne = getHand(doc);
 		Hand handTwo = getHand(doc);
 		Hand handComp = getHand(doc);
+		
 		PlayerNotDone p1 = new PlayerNotDone(playerOne, handOne, betOne);
 		System.out.println(p1.displayPlayer()); 
+		
 		PlayerNotDone p2 = new PlayerNotDone(playerTwo, handTwo, betTwo);
 		System.out.println(p2.displayPlayer());
+		
 		PlayerNotDone comp = new PlayerNotDone("computer", handComp, 100);
 		System.out.println(comp.displayPlayer());
 		
 		System.out.println("***Lets start the game***");
 		//for(int i=0; i<17; i++) {
-		System.out.println(p1.toString());
-		System.out.println(p2.toString());
-		System.out.println(comp.toString());
+		
+		// We will need to have an array of players as the amount can be unlimited but this is just temporary - Ben
+		ArrayList<PlayerNotDone> playerList = new ArrayList<PlayerNotDone>();
+		playerList.add(p1);
+		playerList.add(p2);
+		playerList.add(comp);
+
+		// Bare bones logic for multiple games and players - Ben
+		for(int i = 0; i < GAMES; i++) {
+			System.out.println();
+			for(PlayerNotDone player : playerList) {
+				player.playNextCard(i);
+			}
+			determineWinnerOfRound(playerList, i);
+		}
 		
 		//System.out.println("\nShuffled cards:");
 		//System.out.println(doc.toString());
@@ -64,6 +80,34 @@ public class PlayCards {
 		//System.out.println(getHand(doc).displayHand());
 		
 	}
+	
+	// Finds the winner of the round based on the player with the most valuable card. Adds their bet to their total balance
+	// Will need game tie logic added - Ben 11/1
+	public static void determineWinnerOfRound(ArrayList<PlayerNotDone> players, int cardIndex) {
+		int highestCard = 0;
+		PlayerNotDone winner = null;
+		
+		for(PlayerNotDone player : players) {
+			Card playerCard = player.getHand().getCards().get(cardIndex);
+			if(playerCard.newGetPoints() > highestCard) {
+				winner = player;
+				highestCard = playerCard.newGetPoints();
+			}
+		}
+		
+		System.out.println();
+		System.out.println("The winner of the round is " + winner.getName() + " and I am adding " + winner.getAmtMoney() + " to their balance");
+		System.out.println();
+		System.out.println("** Current Balances **");
+		for(PlayerNotDone player : players) {
+			if(player.getName().equals(winner.getName())) {
+				player.setBalance(player.getBalance() + player.getAmtMoney());
+			}
+			System.out.println(player.getName() + " has " + player.getBalance());
+		}
+		
+	}
+	
 	// I've set 17 cards for the two players in the game. This will need to be changed at the end of project - Eduardo
 	public static Hand getHand(DeckOfCards d) {
 		//Scanner scan = new Scanner(System.in);

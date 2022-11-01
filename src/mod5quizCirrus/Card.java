@@ -19,7 +19,8 @@ public class Card {
 
 	// return String representation of Card
 	public String toString() {
-		return value + ":" + face + " of " + suit + "\nPoints: " + getPoints(value, suit);
+		// Slightly updated to be more eligible. Removed getPoints as that can be handled in playNextCard() in Player class. -Ben 11/1
+		return value + ":" + face + " of " + suit;
 	}
 	
 	//This calculates the total number of points, work in progress.  -Cara
@@ -36,6 +37,20 @@ public class Card {
 		else
 			faceBonus = 1;
 		return value + faceBonus;
+	}
+	
+	// Different way of getting card points see if you like it better :) -Ben 11/1
+	public  int newGetPoints() {
+		switch (suit) {
+		case "Hearts":
+			return value + 4;
+		case "Diamonds":
+			return value + 3;
+		case "Clubs":
+			return value + 2;
+		default:
+			return value + 1;
+		}
 	}
 
 	public String getFace() {
