@@ -19,7 +19,23 @@ public class Card {
 
 	// return String representation of Card
 	public String toString() {
-		return value + ":" + face + " of " + suit;
+		return value + ":" + face + " of " + suit + "\nPoints: " + getPoints(value, suit);
+	}
+	
+	//This calculates the total number of points, work in progress.  -Cara
+	public static int getPoints(int v, String s) {
+		int value = v;
+		String face = s;
+		int faceBonus = 0;
+		if (face.equalsIgnoreCase("hearts"))
+			faceBonus = 4;
+		else if (face.equalsIgnoreCase("diamonds"))
+			faceBonus = 3;
+		else if (face.equalsIgnoreCase("clubs"))
+			faceBonus = 2;
+		else
+			faceBonus = 1;
+		return value + faceBonus;
 	}
 
 	public String getFace() {

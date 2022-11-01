@@ -48,11 +48,8 @@ public class PlayCards {
 		System.out.println("***Lets start the game***");
 		//for(int i=0; i<17; i++) {
 		System.out.println(p1.toString());
-		System.out.println("Value: " + points(handOne.getCards().get(0)));
 		System.out.println(p2.toString());
-		System.out.println("Value: " + points(handTwo.getCards().get(0)));
 		System.out.println(comp.toString());
-		System.out.println("Value: " + points(handComp.getCards().get(0)));
 		
 		//System.out.println("\nShuffled cards:");
 		//System.out.println(doc.toString());
@@ -84,10 +81,10 @@ public class PlayCards {
 				
 	}
 	
-	//This calculates the total number of points, work in progress.  -Cara
+	//This calculates the total number of points.  -Cara
 	public static int points(Card c) {
 		int value = c.getValue();
-		String face = c.getSuit();
+		String face = c.getFace();
 		int faceBonus = 0;
 		if (face.equalsIgnoreCase("hearts"))
 			faceBonus = 4;
