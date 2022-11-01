@@ -29,6 +29,8 @@ public class PlayerNotDone {
 	
 	public String toString() {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		// We need to get info to card class somehow. - Eduardo
+		//hand.getCards().get(0);
 		return name + " bet " + nf.format(amtMoney) + " and the card was " + hand.getCards().get(0);
 	}
 
