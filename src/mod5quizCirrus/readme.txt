@@ -4,6 +4,15 @@ Eduardo J. Argueta-Pineda:
 Comments: 
 10/27/22 - I have done some work on PlayCards and PlayerNotDone. Currently, there is a problem with how the hand is being printed out.
 Please change my code if needed. 
+10/31/22 - Created UML diagram. Started working on driver output. 
+11/1/22:
+ Renamed PlayerNotDone to Player. 
+ Removed commented code in PlayCards. 
+ Fixed formatting of code in PlayCards and Player.
+ Added overallWinner method in PlayCards which determines overall winner
+ Added getNextCard method in Player which gets a card with a specific index
+ Note - I'm thinking about adding an extra round for a tiebreaker. 
+ Also, I'm thinking about transferring some methods from PlayCards to a new blueprint class named Game to clean up the main driver.
 
 Cara Eskew:
 Comments:

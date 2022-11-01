@@ -24,7 +24,7 @@ public class Card {
 	}
 	
 	//This calculates the total number of points, work in progress.  -Cara
-	public static int getPoints(int v, String s) {
+	public static int oldGetPoints(int v, String s) {
 		int value = v;
 		String face = s;
 		int faceBonus = 0;
@@ -40,7 +40,8 @@ public class Card {
 	}
 	
 	// Different way of getting card points see if you like it better :) -Ben 11/1
-	public  int newGetPoints() {
+	// Changed name from newGetPoints to getPoints - Eduardo 11/1
+	public  int getPoints() {
 		switch (suit) {
 		case "Hearts":
 			return value + 4;

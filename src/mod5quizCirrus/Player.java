@@ -5,18 +5,18 @@ import java.text.NumberFormat;
 //import javax.swing.ImageIcon;
 //import javax.swing.JOptionPane;
 
-public class PlayerNotDone {
+public class Player {
 	private String name;
 	private Hand hand;
 	private double amtMoney;
 	// Added the players balance so that their total balance can be kept track of. - Ben 11/1
 	private double balance = 0;
 
-	public PlayerNotDone() {
+	public Player() {
 
 	}
 
-	public PlayerNotDone(String n, Hand h, double b) {
+	public Player(String n, Hand h, double b) {
 		name = n;
 		hand = h;
 		amtMoney = b;
@@ -40,9 +40,14 @@ public class PlayerNotDone {
 	public void playNextCard(int cardIndex) {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		Card currentCard = getHand().getCards().get(cardIndex);
-
+		// Changed pts to points - Eduardo 11/1
 		System.out.println(name + " bet " + nf.format(amtMoney) + " and the card was " + currentCard.toString());
-		System.out.println("Card worth: " + currentCard.newGetPoints() + "pts");
+		System.out.println("Card worth: " + currentCard.getPoints() + " points");
+	}
+	
+	public Card getNextCard(int cardIndex) {
+		Card playerCard = getHand().getCards().get(cardIndex);
+		return playerCard;
 	}
 
 	public String getName() {
