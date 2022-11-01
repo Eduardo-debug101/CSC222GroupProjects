@@ -17,6 +17,8 @@ Please change my code if needed.
 Cara Eskew:
 Comments:
 10/31/22 - Created getPoints for Card class, which then returns to the toString.
+11/01/22 - created determineGameWinner, which assesses the balances of all players and determines the game
+winner.  Needs additional work for ties.
 
 Benjamin Wheatley:
 Comments:

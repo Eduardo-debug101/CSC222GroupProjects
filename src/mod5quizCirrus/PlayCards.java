@@ -68,6 +68,8 @@ public class PlayCards {
 			}
 			determineWinnerOfRound(playerList, i);
 		}
+		determineGameWinner(playerList);
+		
 
 	}
 
@@ -103,11 +105,24 @@ public class PlayCards {
 			System.out.println(player.getName() + " has " + nf.format(player.getBalance())); // Fixed formating - Eduardo 11/1																		
 		}
 		
-		System.out.print("\nHit enter to start next game."); // Add pause between each game - Eduardo 11/1
+		System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1  //
 		scan.nextLine();
 		
 
 	}
+	
+	//Prints out the winner; does not yet handle a tie. -Cara
+	public static void determineGameWinner(ArrayList<Player> gamers) {
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		double maxWinnings = 0;
+		Player maxWinner = null;
+		for (Player player : gamers) {
+			if (player.getBalance() > maxWinnings)
+				maxWinner = player;
+				maxWinnings = player.getBalance();}
+		System.out.println("\n\nThe overall winner is: " + maxWinner.getName() + " with total earnings of " + nf.format(maxWinner.getBalance()));
+		}
+	
 
 	// I've set 17 cards for the two players in the game. This will need to be
 	// changed at the end of project - Eduardo
@@ -127,21 +142,6 @@ public class PlayCards {
 
 	}
 
-	// This calculates the total number of points. -Cara
-	public static int points(Card c) {
-		int value = c.getValue();
-		String face = c.getFace();
-		int faceBonus = 0;
-		if (face.equalsIgnoreCase("hearts"))
-			faceBonus = 4;
-		else if (face.equalsIgnoreCase("diamonds"))
-			faceBonus = 3;
-		else if (face.equalsIgnoreCase("clubs"))
-			faceBonus = 2;
-		else
-			faceBonus = 1;
-		return value + faceBonus;
-	}
 	
 	// Created overallWinner method which determines the overall winner. Work in progress - Eduardo
 	public static void overallWinner(Player winner) {
