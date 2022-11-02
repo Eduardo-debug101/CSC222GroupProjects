@@ -78,6 +78,7 @@ public class PlayCards {
 	// Will need game tie logic added - Ben 11/1
 	
 	// changed ArrayList's name from players to gamers for more legible code - Eduardo 11/1
+	//Added tie conditions.  I've yet to come across three-way tie, but there's code for that now.
 	public static void determineWinnerOfRound(ArrayList<Player> gamers, int cardIndex) {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		Scanner scan = new Scanner(System.in);
@@ -85,6 +86,8 @@ public class PlayCards {
 		int highestCard = 0;
 		Player winner = null;
 		Player winner2 = null;
+		Player winner3 = null;
+		int winner2Pts = 0;
 
 		for (Player player : gamers) {
 			//Card playerCard = player.getHand().getCards().get(cardIndex);
@@ -94,13 +97,16 @@ public class PlayCards {
 				highestCard = playerCard.getPoints();
 			}
 			else if (playerCard.getPoints() == highestCard && highestCard > 0) {
-				winner2 = player;
+				if (winner2 == null) {
+					winner2 = player;
+					winner2Pts=playerCard.getPoints();}
+				else
+					winner3 = player;
 			}
 		}
 
 		// Renamed the wording of this statement - Eduardo 11/1
-		//Added conditions to handle a tie.  - Cara 11/1
-		if (winner2 == null) {
+		if (winner2 == null || winner2Pts < highestCard) {
 		System.out.println("\nThe winner of the round is " + winner.getName() + ". The winner added "
 				+ nf.format(winner.getAmtMoney()) + " to their balance\n");
 		System.out.println("** Current Balances **");
@@ -110,9 +116,10 @@ public class PlayCards {
 			}
 			System.out.println(player.getName() + " has " + nf.format(player.getBalance())); // Fixed formating - Eduardo 11/1																		
 		}
-		System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1  //
+		System.out.print("\nHit enter to start next round.");
 		scan.nextLine();}
 		else {
+			if (winner3==null) {
 			System.out.println("\nThere was a tie this round between " + winner.getName() + " and " 
 					+ winner2.getName() + ".");
 			System.out.println(winner.getName() + " added " + nf.format((winner.getAmtMoney()/2)) + 
@@ -125,6 +132,15 @@ public class PlayCards {
 				System.out.println(player.getName() + " has " + nf.format(player.getBalance())); }
 			System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1  //
 			scan.nextLine();}
+			else {
+				System.out.println("It was a three-way tie!  No money added.");
+				System.out.println("** Current Balances **");
+				for (Player player : gamers) {
+					System.out.println(player.getName() + " has " + nf.format(player.getBalance()));
+				}
+			}
+			}
+
 
 		
 
