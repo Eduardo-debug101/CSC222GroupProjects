@@ -45,3 +45,8 @@ Changed NUM_GAMES in driver now to the amount of games applicable to the player 
 Added another determineWinnerOfRound2 method that will be able to handle unlimited players and ties
 I think per the sample output Dr. Wolff wants no winner for the round if they tied so no one wins anything that round
 Still needs a finished final winner method as well as some error logic for user inputs in populatePlayerList, like entering $0.00 bet amount etc.
+
+11/2/22 Continued:
+Fixed bug with winners of the round where their balance was being overwritten and not added to (+=)
+Started documenting code
+Updated printStart() to reflect tied player rewards

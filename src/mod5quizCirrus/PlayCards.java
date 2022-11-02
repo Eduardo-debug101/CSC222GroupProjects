@@ -44,6 +44,7 @@ public class PlayCards {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		Scanner scan = new Scanner(System.in);
 
+		// Finds the highest card of this play
 		int highestCardPoints = 0;
 		for (Player player : gamersList) {
 			Card playerCard = player.getNextCard(cardIndex);
@@ -52,6 +53,7 @@ public class PlayCards {
 			}
 		}
 
+		// Adds players who have the highest card to a winners list
 		for (Player player : gamersList) {
 			Card playerCard = player.getNextCard(cardIndex);
 			if (playerCard.getPoints() == highestCardPoints) {
@@ -59,20 +61,25 @@ public class PlayCards {
 			}
 		}
 
+		// Handles 1 up to multiple winners. Tied games the winners get half of their bet amount for that play
 		if (winners.size() > 1) {
 			String namesListBuilder = "";
 			// changed gamersList to winners so it only grabs the player that are declared
 			// winners - Eduardo 11/2
 			for (Player player : winners) {
+				player.setBalance(player.getBalance() + (player.getAmtMoney() / 2));
 				namesListBuilder += player.getName() + " ";
 			}
-			System.out.println(namesListBuilder + " tied this round! No one wins!!");
+			System.out.println(namesListBuilder + " tied this round! Tied winners will get half of their bet!!");
 		} else {
-			winners.get(0).setBalance(winners.get(0).getAmtMoney());
+			// Fix: Balance was being over written and not added to - Ben 11/2
+			winners.get(0).setBalance(winners.get(0).getBalance() + winners.get(0).getAmtMoney());
+			
 			System.out.println(winners.get(0).getName() + " won this round!! I'm adding "
 					+ nf.format(winners.get(0).getAmtMoney()) + " to their balance");
 		}
 
+		// Lists out player balances
 		System.out.println();
 		System.out.println("** Current Balances **");
 		for (Player player : gamersList) {
@@ -230,11 +237,12 @@ public class PlayCards {
 	 * program - Eduardo
 	 */
 	// Changed output - Eduardo 11/2
+	// Updated to reflect tied player rewards - Ben 11/2
 	public static void printStart() {
 		System.out.println("****************** Wolff's War! **************************** "
 				+ "\nScoring:  Hearts = 4 pts, Diamonds = 3 pts,  Clubs = 2 pts,  Spades = 1 pt\r\n"
 				+ "Add the points for the suit to the face value for the total points for that person\r\n"
-				+ "Highest points win!\r\n" + "For ties, no one wins!!\r\n" + "");
+				+ "Highest points win!\r\n" + "For ties, tied winners will get half of their bet!!\r\n" + "");
 	}
 
 }
