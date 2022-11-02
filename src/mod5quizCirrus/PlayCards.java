@@ -84,6 +84,7 @@ public class PlayCards {
 
 		int highestCard = 0;
 		Player winner = null;
+		Player winner2 = null;
 
 		for (Player player : gamers) {
 			//Card playerCard = player.getHand().getCards().get(cardIndex);
@@ -92,9 +93,14 @@ public class PlayCards {
 				winner = player;
 				highestCard = playerCard.getPoints();
 			}
+			else if (playerCard.getPoints() == highestCard && highestCard > 0) {
+				winner2 = player;
+			}
 		}
 
 		// Renamed the wording of this statement - Eduardo 11/1
+		//Added conditions to handle a tie.  - Cara 11/1
+		if (winner2 == null) {
 		System.out.println("\nThe winner of the round is " + winner.getName() + ". The winner added "
 				+ nf.format(winner.getAmtMoney()) + " to their balance\n");
 		System.out.println("** Current Balances **");
@@ -104,9 +110,22 @@ public class PlayCards {
 			}
 			System.out.println(player.getName() + " has " + nf.format(player.getBalance())); // Fixed formating - Eduardo 11/1																		
 		}
-		
 		System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1  //
-		scan.nextLine();
+		scan.nextLine();}
+		else {
+			System.out.println("\nThere was a tie this round between " + winner.getName() + " and " 
+					+ winner2.getName() + ".");
+			System.out.println(winner.getName() + " added " + nf.format((winner.getAmtMoney()/2)) + 
+					" to their balance, and " + winner2.getName() + " added " + (nf.format(winner2.getAmtMoney()/2)) + "to theirs.");
+			System.out.println("** Current Balances **");
+			for (Player player : gamers) {
+				if (player.getName().equals(winner.getName()) || player.getName().equals(winner2.getName())) {
+					player.setBalance(player.getBalance() + (player.getAmtMoney() * .5));
+				}
+				System.out.println(player.getName() + " has " + nf.format(player.getBalance())); }
+			System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1  //
+			scan.nextLine();}
+
 		
 
 	}

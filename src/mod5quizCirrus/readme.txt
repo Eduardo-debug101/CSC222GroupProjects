@@ -18,7 +18,9 @@ Cara Eskew:
 Comments:
 10/31/22 - Created getPoints for Card class, which then returns to the toString.
 11/01/22 - created determineGameWinner, which assesses the balances of all players and determines the game
-winner.  Needs additional work for ties.
+winner.  Needs additional work for ties.  Added a tie component to the determineWinnerOfRound method which,
+per Discord conversation, adds 50% of the bet value to each of tied player's balances.  This currently only
+handles two-way ties.
 
 Benjamin Wheatley:
 Comments:
