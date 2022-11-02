@@ -24,10 +24,20 @@ tie, but just in case I added a condition where no one adds money to their balan
 
 Benjamin Wheatley:
 Comments:
+
 11/1/22:
 Added logic in driver for multiple games and slowly started thinking about unlimited amounts of players
 Added a total balance for each player in player class
 Added method in driver to determine winner and update each balance, will need logic for ties
 Added new method in player class that simulates a play of card in the current index of the hand
-
 One thing about the way I've handled cards is that they're never removed from the hand of the player, though I don't know if that really matters or not
+
+11/2/22:
+I've added in a lot of the logic needed for unlimited players
+Added populatePlayerList in driver to get all of the players for the game
+This moves a lot of the driver code into its own method
+Updated getHand() so that it will take into account the proper hand size for multiple players
+Changed NUM_GAMES in driver now to the amount of games applicable to the player amount
+Added another determineWinnerOfRound2 method that will be able to handle unlimited players and ties
+I think per the sample output Dr. Wolff wants no winner for the round if they tied so no one wins anything that round
+Still needs a finished final winner method as well as some error logic for user inputs in populatePlayerList, like entering $0.00 bet amount etc.

@@ -19,7 +19,6 @@ public class Card {
 
 	// return String representation of Card
 	public String toString() {
-		// Slightly updated to be more eligible. Removed getPoints as that can be handled in playNextCard() in Player class. -Ben 11/1
 		return value + ":" + face + " of " + suit;
 	}
 	

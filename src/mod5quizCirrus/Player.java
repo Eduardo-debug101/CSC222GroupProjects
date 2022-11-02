@@ -9,7 +9,6 @@ public class Player {
 	private String name;
 	private Hand hand;
 	private double amtMoney;
-	// Added the players balance so that their total balance can be kept track of. - Ben 11/1
 	private double balance = 0;
 
 	public Player() {
@@ -39,7 +38,7 @@ public class Player {
 	// Plays the next card in the hand
 	public void playNextCard(int cardIndex) {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		Card currentCard = getHand().getCards().get(cardIndex);
+		Card currentCard = getNextCard(cardIndex);
 		// Changed pts to points - Eduardo 11/1
 		System.out.println(name + " bet " + nf.format(amtMoney) + " and the card was " + currentCard.toString());
 		System.out.println("Card worth: " + currentCard.getPoints() + " points");
