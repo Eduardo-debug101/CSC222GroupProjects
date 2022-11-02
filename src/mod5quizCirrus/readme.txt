@@ -13,6 +13,10 @@ Please change my code if needed.
  Added getNextCard method in Player which gets a card with a specific index
  Note - I'm thinking about adding an extra round for a tiebreaker. 
  Also, I'm thinking about transferring some methods from PlayCards to a new blueprint class named Game to clean up the main driver.
+ 11/2/22:
+ Fixed an issue where all players tied despite having different points in determineWinnerOfRound2 method
+ Changed text in printStart to fit in with new changes
+ 
 
 Cara Eskew:
 Comments:
