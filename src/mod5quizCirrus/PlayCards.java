@@ -22,17 +22,24 @@ public class PlayCards {
 		System.out.println("***Lets start the game***");
 
 		// Updated all of this - Ben 11/2
+		Scanner scan = new Scanner(System.in);
 		int numGames = 51 / playerList.size();
-		System.out.println("There are " + (playerList.size() - 1) + " players plus 1 computer so we will be playing "
-				+ numGames + " games");
+		System.out.println("There are " + (playerList.size() - 1) + " players plus 1 computer, so we will be playing "
+				+ numGames + " rounds.");
 		for (int i = 0; i < numGames; i++) {
 			System.out.println();
 			for (Player player : playerList) {
 				player.playNextCard(i);
 			}
 			determineWinnerOfRound2(playerList, i);
+			//Migrated enter prompt to main so we can stop prompting for Enter
+			//once final round is completed. -Cara
+			if (i<numGames-1) {
+				System.out.print("\nHit enter to start next round.");
+				scan.nextLine();}
 		}
 		// Need a finished final winner method - Ben 11/2
+		// Should be good to go. - Cara 11/2
 		determineGameWinner(playerList);
 
 	}
@@ -86,9 +93,6 @@ public class PlayCards {
 		for (Player player : gamersList) {
 			System.out.println(player.getName() + " has " + nf.format(player.getBalance()));
 		}
-
-		System.out.print("\nHit enter to start next round.");
-		scan.nextLine();
 	}
 
 	/*Obsolete method, only preserving for reference purposes.  If no longer required, feel free to delete.
@@ -176,6 +180,7 @@ public class PlayCards {
 		System.out.println("How many players will be playing today?");
 		// Total player count must account for the computer so + 1
 		int playerCount = scan.nextInt() + 1;
+			
 
 		// -1 as we are not counting the computer
 		for (int i = 0; i < playerCount - 1; i++) {
