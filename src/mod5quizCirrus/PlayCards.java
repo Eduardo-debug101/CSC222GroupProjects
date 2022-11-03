@@ -34,7 +34,7 @@ public class PlayCards {
 			for (Player player : playerList) {
 				player.playNextCard(i);
 			}
-			determineWinnerOfRound2(playerList, i);
+			determineWinnerOfRound(playerList, i);
 			if (i<numGames-1) {
 				System.out.print("\nHit enter to start next round.");
 				scan.nextLine();}
@@ -45,7 +45,7 @@ public class PlayCards {
 
 	// Updated way to handle round winner. Takes into account all players and
 	// handles ties. Tied games will not get any reward - Ben
-	public static void determineWinnerOfRound2(ArrayList<Player> gamersList, int cardIndex) {
+	public static void determineWinnerOfRound(ArrayList<Player> gamersList, int cardIndex) {
 		ArrayList<Player> winners = new ArrayList<Player>();
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		Scanner scan = new Scanner(System.in);
@@ -166,10 +166,6 @@ public class PlayCards {
 
 	}
 
-	/*
-	 * prints the beginning of the sample output change it if needed to fit with
-	 * program - Eduardo
-	 */
 	public static void printStart() {
 		System.out.println("****************** Wolff's War! **************************** "
 				+ "\nScoring:  Hearts = 4 pts, Diamonds = 3 pts,  Clubs = 2 pts,  Spades = 1 pt\r\n"
