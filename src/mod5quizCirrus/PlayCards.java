@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 public class PlayCards {
 
 	public static void main(String[] args) {
-
+		Scanner scan = new Scanner(System.in);
 		printStart(); // calls printStart method - Eduardo
 
 		DeckOfCards doc = new DeckOfCards();
@@ -15,37 +15,36 @@ public class PlayCards {
 
 		ArrayList<Player> playerList = populatePlayerList(doc);
 
+		// Displays each player's starting hand
 		for (Player player : playerList) {
 			System.out.println(player.displayPlayer());
 		}
 
 		System.out.println("***Lets start the game***");
 
-		// Updated all of this - Ben 11/2
-		Scanner scan = new Scanner(System.in);
 		int numGames = 51 / playerList.size();
 		System.out.println("There are " + (playerList.size() - 1) + " players plus 1 computer, so we will be playing "
 				+ numGames + " rounds.");
+		
+		// Iterates through the needed amount of games relative to the amount of cards
+		// Iterates through the populated player list to play next card
+		// Round winner is then determined and after all games are ran the final winner is found from the highest balance - Ben
 		for (int i = 0; i < numGames; i++) {
 			System.out.println();
 			for (Player player : playerList) {
 				player.playNextCard(i);
 			}
 			determineWinnerOfRound2(playerList, i);
-			//Migrated enter prompt to main so we can stop prompting for Enter
-			//once final round is completed. -Cara
 			if (i<numGames-1) {
 				System.out.print("\nHit enter to start next round.");
 				scan.nextLine();}
 		}
-		// Need a finished final winner method - Ben 11/2
-		// Should be good to go. - Cara 11/2
 		determineGameWinner(playerList);
 
 	}
 
 	// Updated way to handle round winner. Takes into account all players and
-	// handles ties. Tied games will not get any reward - Ben 11/2
+	// handles ties. Tied games will not get any reward - Ben
 	public static void determineWinnerOfRound2(ArrayList<Player> gamersList, int cardIndex) {
 		ArrayList<Player> winners = new ArrayList<Player>();
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
@@ -72,15 +71,12 @@ public class PlayCards {
 		// bet amount for that play
 		if (winners.size() > 1) {
 			String namesListBuilder = "";
-			// changed gamersList to winners so it only grabs the player that are declared
-			// winners - Eduardo 11/2
 			for (Player player : winners) {
 				player.setBalance(player.getBalance() + (player.getAmtMoney() / 2));
 				namesListBuilder += player.getName() + " ";
 			}
 			System.out.println(namesListBuilder + " tied this round! Tied winners will get half of their bet!!");
 		} else {
-			// Fix: Balance was being over written and not added to - Ben 11/2
 			winners.get(0).setBalance(winners.get(0).getBalance() + winners.get(0).getAmtMoney());
 
 			System.out.println(winners.get(0).getName() + " won this round!! I'm adding "
@@ -95,83 +91,8 @@ public class PlayCards {
 		}
 	}
 
-	/*Obsolete method, only preserving for reference purposes.  If no longer required, feel free to delete.
-	 * -Cara
-	 * Finds the winner of the round based on the player with the most valuable
-	// card. Adds their bet to their total balance
 
-	// changed ArrayList's name from players to gamers for more legible code -
-	// Eduardo 11/1
-	// Added tie conditions. I've yet to come across three-way tie, but there's code
-	// for that now.
-	public static void determineWinnerOfRound(ArrayList<Player> gamers, int cardIndex) {
-		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		Scanner scan = new Scanner(System.in);
-
-		int highestCard = 0;
-		Player winner = null;
-		Player winner2 = null;
-		Player winner3 = null;
-		int winner2Pts = 0;
-
-		for (Player player : gamers) {
-			// Card playerCard = player.getHand().getCards().get(cardIndex);
-			Card playerCard = player.getNextCard(cardIndex); // Calls the getNextCard method in Player to get current
-																// card - Eduardo 11/1
-			if (playerCard.getPoints() > highestCard) {
-				winner = player;
-				highestCard = playerCard.getPoints();
-			} else if (playerCard.getPoints() == highestCard && highestCard > 0) {
-				if (winner2 == null) {
-					winner2 = player;
-					winner2Pts = playerCard.getPoints();
-				} else
-					winner3 = player;
-			}
-		}
-
-		if (winner2 == null || winner2Pts < highestCard) {
-			System.out.println("\nThe winner of the round is " + winner.getName() + ". The winner added "
-					+ nf.format(winner.getAmtMoney()) + " to their balance\n");
-			System.out.println("** Current Balances **");
-			for (Player player : gamers) {
-				if (player.getName().equals(winner.getName())) {
-					player.setBalance(player.getBalance() + player.getAmtMoney());
-				}
-				System.out.println(player.getName() + " has " + nf.format(player.getBalance())); // Fixed formating -
-																									// Eduardo 11/1
-			}
-			System.out.print("\nHit enter to start next round.");
-			scan.nextLine();
-		} else {
-			if (winner3 == null) {
-				System.out.println(
-						"\nThere was a tie this round between " + winner.getName() + " and " + winner2.getName() + ".");
-				System.out.println(winner.getName() + " added " + nf.format((winner.getAmtMoney() / 2))
-						+ " to their balance, and " + winner2.getName() + " added "
-						+ (nf.format(winner2.getAmtMoney() / 2)) + "to theirs.");
-				System.out.println("** Current Balances **");
-				for (Player player : gamers) {
-					if (player.getName().equals(winner.getName()) || player.getName().equals(winner2.getName())) {
-						player.setBalance(player.getBalance() + (player.getAmtMoney() * .5));
-					}
-					System.out.println(player.getName() + " has " + nf.format(player.getBalance()));
-				}
-				System.out.print("\nHit enter to start next round."); 
-				scan.nextLine();
-			} else {
-				System.out.println("It was a three-way tie!  No money added.");
-				System.out.println("** Current Balances **");
-				for (Player player : gamers) {
-					System.out.println(player.getName() + " has " + nf.format(player.getBalance()));
-				}
-			}
-		}
-
-	}*/
-
-	// Populates the player list in the main driver
-	// Needs invalid user input logic - Ben 11/2
+	// Populates the player list in the main driver - Ben
 	public static ArrayList<Player> populatePlayerList(DeckOfCards deck) {
 		Scanner scan = new Scanner(System.in);
 
@@ -233,12 +154,6 @@ public class PlayCards {
 	}
 
 	public static Hand getHand(DeckOfCards d, int playerCount) {
-
-		// As sometimes the deck count (51) cannot be evenly divisible by the
-		// playerCount, an integer type will make sure that
-		// there will be an equal amount of cards for each player (Integer rounds down).
-		// Every player must have the same amount of cards or some players will be at a
-		// severe disadvantage and not be able to play
 		int numCards = 51 / playerCount;
 
 		Hand hand = new Hand();
@@ -255,8 +170,6 @@ public class PlayCards {
 	 * prints the beginning of the sample output change it if needed to fit with
 	 * program - Eduardo
 	 */
-	// Changed output - Eduardo 11/2
-	// Updated to reflect tied player rewards - Ben 11/2
 	public static void printStart() {
 		System.out.println("****************** Wolff's War! **************************** "
 				+ "\nScoring:  Hearts = 4 pts, Diamonds = 3 pts,  Clubs = 2 pts,  Spades = 1 pt\r\n"

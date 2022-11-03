@@ -22,24 +22,7 @@ public class Card {
 		return value + ":" + face + " of " + suit;
 	}
 	
-	//This calculates the total number of points, work in progress.  -Cara
-	public static int oldGetPoints(int v, String s) {
-		int value = v;
-		String face = s;
-		int faceBonus = 0;
-		if (face.equalsIgnoreCase("hearts"))
-			faceBonus = 4;
-		else if (face.equalsIgnoreCase("diamonds"))
-			faceBonus = 3;
-		else if (face.equalsIgnoreCase("clubs"))
-			faceBonus = 2;
-		else
-			faceBonus = 1;
-		return value + faceBonus;
-	}
-	
-	// Different way of getting card points see if you like it better :) -Ben 11/1
-	// Changed name from newGetPoints to getPoints - Eduardo 11/1
+	// Returns card point value based on its suit - Ben
 	public  int getPoints() {
 		switch (suit) {
 		case "Hearts":

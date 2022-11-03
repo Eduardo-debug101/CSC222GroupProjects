@@ -30,8 +30,6 @@ public class Player {
 	
 	public String toString() {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		// We need to get info to card class somehow. - Eduardo
-		//hand.getCards().get(0);
 		return name + " bet " + nf.format(amtMoney) + " and the card was " + hand.getCards().get(0);
 	}
 	
@@ -39,7 +37,6 @@ public class Player {
 	public void playNextCard(int cardIndex) {
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		Card currentCard = getNextCard(cardIndex);
-		// Changed pts to points - Eduardo 11/1
 		System.out.println(name + " bet " + nf.format(amtMoney) + " and the card was " + currentCard.toString());
 		System.out.println("Card worth: " + currentCard.getPoints() + " points");
 	}
