@@ -84,7 +84,7 @@ public class PlayCards {
 			winners.get(0).setBalance(winners.get(0).getBalance() + winners.get(0).getAmtMoney());
 
 			System.out.println(winners.get(0).getName() + " won this round!! I'm adding "
-					+ nf.format(winners.get(0).getAmtMoney()) + " to their balance");
+					+ nf.format(winners.get(0).getAmtMoney()) + " to their balance.");
 		}
 
 		// Lists out player balances
@@ -189,7 +189,7 @@ public class PlayCards {
 			scan.nextLine();
 			String name = scan.nextLine();
 
-			System.out.println("How much do they want their bet to hit?");
+			System.out.println("How much do they want to bet per hit?");
 			double bet = scan.nextDouble();
 
 			Hand hand = getHand(deck, playerCount);
