@@ -61,7 +61,8 @@ public class PlayCards {
 			}
 		}
 
-		// Handles 1 up to multiple winners. Tied games the winners get half of their bet amount for that play
+		// Handles 1 up to multiple winners. Tied games the winners get half of their
+		// bet amount for that play
 		if (winners.size() > 1) {
 			String namesListBuilder = "";
 			// changed gamersList to winners so it only grabs the player that are declared
@@ -74,7 +75,7 @@ public class PlayCards {
 		} else {
 			// Fix: Balance was being over written and not added to - Ben 11/2
 			winners.get(0).setBalance(winners.get(0).getBalance() + winners.get(0).getAmtMoney());
-			
+
 			System.out.println(winners.get(0).getName() + " won this round!! I'm adding "
 					+ nf.format(winners.get(0).getAmtMoney()) + " to their balance");
 		}
@@ -90,7 +91,9 @@ public class PlayCards {
 		scan.nextLine();
 	}
 
-	// Finds the winner of the round based on the player with the most valuable
+	/*Obsolete method, only preserving for reference purposes.  If no longer required, feel free to delete.
+	 * -Cara
+	 * Finds the winner of the round based on the player with the most valuable
 	// card. Adds their bet to their total balance
 
 	// changed ArrayList's name from players to gamers for more legible code -
@@ -123,7 +126,6 @@ public class PlayCards {
 			}
 		}
 
-		// Renamed the wording of this statement - Eduardo 11/1
 		if (winner2 == null || winner2Pts < highestCard) {
 			System.out.println("\nThe winner of the round is " + winner.getName() + ". The winner added "
 					+ nf.format(winner.getAmtMoney()) + " to their balance\n");
@@ -151,7 +153,7 @@ public class PlayCards {
 					}
 					System.out.println(player.getName() + " has " + nf.format(player.getBalance()));
 				}
-				System.out.print("\nHit enter to start next round."); // Add pause between each game - Eduardo 11/1 //
+				System.out.print("\nHit enter to start next round."); 
 				scan.nextLine();
 			} else {
 				System.out.println("It was a three-way tie!  No money added.");
@@ -162,7 +164,7 @@ public class PlayCards {
 			}
 		}
 
-	}
+	}*/
 
 	// Populates the player list in the main driver
 	// Needs invalid user input logic - Ben 11/2
@@ -198,18 +200,31 @@ public class PlayCards {
 		return playerList;
 	}
 
-	// Prints out the winner; does not yet handle a tie. -Cara
-	public static void determineGameWinner(ArrayList<Player> gamers) {
+	// Prints out the winner. -Cara
+	public static void determineGameWinner(ArrayList<Player> competitors) {
+		ArrayList<Player> gameWinners = new ArrayList<Player>();
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		double maxWinnings = 0;
-		Player maxWinner = null;
-		for (Player player : gamers) {
+		for (Player player : competitors) {
 			if (player.getBalance() > maxWinnings)
-				maxWinner = player;
-			maxWinnings = player.getBalance();
+				maxWinnings = player.getBalance();
 		}
-		System.out.println("\n\nThe overall winner is: " + maxWinner.getName() + " with total earnings of "
-				+ nf.format(maxWinner.getBalance()));
+		for (Player player : competitors) {
+			if (player.getBalance() == maxWinnings)
+				gameWinners.add(player);
+		}
+		
+		if (gameWinners.size() > 1) {
+			String winnersListString = "";
+			for (Player player : gameWinners) {
+				winnersListString += player.getName() + ", ";
+			}
+			System.out.println("The overall winners are: " + winnersListString + "who tied with " + nf.format(maxWinnings) 
+			+ " in earnings each!");
+		} else {
+			System.out.println("\n\nThe overall winner is: " + gameWinners.get(0).getName() + " with total earnings of "
+					+ nf.format(gameWinners.get(0).getBalance()) + ".");
+		}
 	}
 
 	public static Hand getHand(DeckOfCards d, int playerCount) {
@@ -230,7 +245,6 @@ public class PlayCards {
 		return hand;
 
 	}
-
 
 	/*
 	 * prints the beginning of the sample output change it if needed to fit with

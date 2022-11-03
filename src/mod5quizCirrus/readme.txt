@@ -25,6 +25,7 @@ Comments:
 winner.  Needs additional work for ties.  Added a tie component to the determineWinnerOfRound method which,
 per Discord conversation, adds 50% of the bet value to each of tied player's balances.  I have not yet come across a three-way
 tie, but just in case I added a condition where no one adds money to their balances.
+11/02/11 - determineGameWinner can now report tied games.
 
 Benjamin Wheatley:
 Comments:
