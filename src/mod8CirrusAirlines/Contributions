@@ -1,6 +1,13 @@
 Group members: Eduardo Argueta-Pineda, Cara Eskew, Benjamin Wheatley
 
 Eduardo J. Argueta-Pineda:
+11/26/22:
+- Created a simple customer and reservation class.
+- Created a menu in CirrusDriver.
+- Created a class called MenuInfo to handle menu options
+- Created unique ids for every customer being added
+- Created readme.txt
+- Added a menu prompt that will eventually load in mock data for customers and reservations.
 
 Cara Eskew:
 
