@@ -4,24 +4,26 @@ import java.time.LocalDate;
 
 public class Reservation {
 	private int id;
-	private String name;
+	private Customer cust;
 	private LocalDate date;
+	private String seat;
 	
 	public Reservation() {
 	}
 	
-	public Reservation(int i, String n, LocalDate d) {
+	public Reservation(int i, Customer c, LocalDate d, String s) {
 		id = i;
-		name = n;
+		cust = c;
 		date = d;
+		seat = s;
 	}
 
 	@Override
 	// Auto generated toString; change if needed - Eduardo 11/26
 	public String toString() {
-		return "Reservation [id=" + id + ", name=" + name + ", date=" + date + "]";
+		return "Reservation [id=" + id + ", cust=" + cust + ", date=" + date + ", seat=" + seat + "]";
 	}
-
+	
 	//Getters and setters - Eduardo 11/26
 	
 	public int getId() {
@@ -32,12 +34,12 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Customer getCust() {
+		return cust;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCust(Customer cust) {
+		this.cust = cust;
 	}
 
 	public LocalDate getDate() {
@@ -46,5 +48,13 @@ public class Reservation {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public String getSeat() {
+		return seat;
+	}
+
+	public void setSeat(String seat) {
+		this.seat = seat;
 	}
 }
