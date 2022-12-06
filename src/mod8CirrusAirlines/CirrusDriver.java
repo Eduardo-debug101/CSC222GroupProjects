@@ -26,7 +26,7 @@ public class CirrusDriver {
 					cust = mi.loadData();	
 				
 				else if (ans == 2) {
-					
+					mi.createReservations(cust);
 				}
 					
 				else if (ans == 3) {

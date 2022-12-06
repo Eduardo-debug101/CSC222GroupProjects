@@ -8,6 +8,13 @@ Eduardo J. Argueta-Pineda:
 - Created unique ids for every customer being added
 - Created readme.txt
 - Added a menu prompt that will eventually load in mock data for customers and reservations.
+12/4/22:
+- Minor tweaks
+12/5/22:
+- Added a plane class that has fields for a 2d reservation array and a localdate.
+- Created createReservation method in MenuInfo
+- Added a new message in loadData in MenuInfo that shares the customer's id number 
+
 
 Cara Eskew:
 
