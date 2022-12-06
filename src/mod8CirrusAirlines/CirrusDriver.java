@@ -9,6 +9,11 @@ public class CirrusDriver {
 		
 		Scanner scan = new Scanner(System.in);
 		ArrayList<Customer> cust = new ArrayList<Customer>();
+		Reservation[][] seats = new Reservation[4][];
+		seats[0] = new Reservation[2];
+		seats[1] = new Reservation[2];
+		seats[2] = new Reservation[4];
+		seats[3] = new Reservation[4];
 		MenuInfo mi = new MenuInfo();
 		
 		int ans = 0;
@@ -19,7 +24,8 @@ public class CirrusDriver {
 				ans = scan.nextInt();
 				
 				if (ans == 0) {
-					
+					mi.loadPresetData(cust, seats);
+					System.out.println("Data was successfully loaded!");
 				}
 					
 				else if (ans == 1) 

@@ -14,6 +14,10 @@ Eduardo J. Argueta-Pineda:
 - Added a plane class that has fields for a 2d reservation array and a localdate.
 - Created createReservation method in MenuInfo
 - Added a new message in loadData in MenuInfo that shares the customer's id number 
+12/6/22:
+- Started working on ragged arrays in MenuInfo
+- Tweaked Reservation where customers automatically get a randomated reservation id
+- Added a loadPresetData method that loads in data ***Currently in development***
 
 
 Cara Eskew:

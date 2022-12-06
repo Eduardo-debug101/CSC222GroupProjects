@@ -1,17 +1,13 @@
 package mod8CirrusAirlines;
 
-import java.time.LocalDate;
-
 public class Plane {
 	private Reservation[][] seats;
-	private LocalDate date;
 	
 	public Plane() {
 	}
 	
-	public Plane(Reservation[][] s, LocalDate d) {
+	public Plane(Reservation[][] s) {
 		seats = s;
-		date = d;
 	}
 	
 	// remember to change this in the future - Eduardo 12/5
@@ -26,15 +22,7 @@ public class Plane {
 	public void setSeats(Reservation[][] seats) {
 		this.seats = seats;
 	}
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-	
 }
+
 
 

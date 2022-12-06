@@ -8,11 +8,16 @@ public class Reservation {
 	private LocalDate date;
 	private String seat;
 	
+	private static int nextNum = 100;
+	
 	public Reservation() {
+		id = nextNum;
+		nextNum++;
 	}
 	
-	public Reservation(int i, Customer c, LocalDate d, String s) {
-		id = i;
+	public Reservation(Customer c, LocalDate d, String s) {
+		id = nextNum;
+		nextNum++;
 		cust = c;
 		date = d;
 		seat = s;
