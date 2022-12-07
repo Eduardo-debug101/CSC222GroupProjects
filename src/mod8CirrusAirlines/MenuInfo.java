@@ -23,17 +23,22 @@ public class MenuInfo {
 		int num3 = columnNum(resv3.getSeat());
 		int num4 = columnNum(resv4.getSeat());
 		int num5 = columnNum(resv5.getSeat());
+		int num1b = rowNum(resv1.getSeat());
+		int num2b = rowNum(resv2.getSeat());
+		int num3b = rowNum(resv3.getSeat());
+		int num4b = rowNum(resv4.getSeat());
+		int num5b = rowNum(resv5.getSeat());
 		// We need to find a way to get the second num in the seat code Ex) B1 ---> 1 - Eduardo 12/6
 		c.add(cust1);
 		c.add(cust2);
 		c.add(cust3);
 		c.add(cust4);
 		c.add(cust5);
-//		s[num1][num1b] = resv1;
-//		s[num2][num2b] = resv2;
-//		s[num3][num3b] = resv3;
-//		s[num4][num4b] = resv4;
-//		s[num5][num5b] = resv5;
+		s[num1][num1b] = resv1;
+		s[num2][num2b] = resv2;
+		s[num3][num3b] = resv3;
+		s[num4][num4b] = resv4;
+		s[num5][num5b] = resv5;
 	}
 
 	// Creates a customer object and is added to an arraylist in main driver -
@@ -118,6 +123,12 @@ public class MenuInfo {
 		char ch = temp.charAt(0);
 		int position = ch - 'a' + 1;
 		return position;
+	}
+	
+	public int rowNum(String in) {
+		String rowString = "" + in.charAt(1);
+		int row = (int) Integer.parseInt(rowString);
+		return row;
 	}
 	
 		

@@ -21,5 +21,8 @@ Eduardo J. Argueta-Pineda:
 
 
 Cara Eskew:
+12/6/22:
+-Added method to extract second digit of seat.
+-Began adding logic to print available seats.
 
 Benjamin Wheatley:
