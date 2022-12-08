@@ -18,6 +18,10 @@ Eduardo J. Argueta-Pineda:
 - Started working on ragged arrays in MenuInfo
 - Tweaked Reservation where customers automatically get a randomated reservation id
 - Added a loadPresetData method that loads in data ***Currently in development***
+11/7/22:
+- Fixed an issue in loadPresetData in the MenuInfo class where seats were incorrectly assigned.
+- Renamed variables in loadPresetData in MenuInfo
+- Started working on printing 2d arrays in Plane and MenuInfo
 
 
 Cara Eskew:

@@ -38,12 +38,11 @@ public class CirrusDriver {
 				else if (ans == 3) {
 					//Added bones of printing the available seats.  Still under development.
 					//We will want to build a way of showing a different array for each date. -CH
-					
-					System.out.println("Which date are you inquiring about?  "
-							+ "Type 1 for the first, 2 for the second, or 3 for the third.");
-					
-					int resDate = scan.nextInt();
-					
+//					
+//					System.out.println("Which date are you inquiring about?  "
+//							+ "Type 1 for the first, 2 for the second, or 3 for the third.");
+//					
+//					int resDate = scan.nextInt();
 					
 				/*	for (int i = 0; i < seats.length; i++) {
 			            for (int j = 0; j < seats[i].length; j++)
@@ -54,6 +53,7 @@ public class CirrusDriver {
 			                	System.out.print(seats[i][j].getSeat());
 			                }
 			            System.out.println();*/
+					mi.printSeats(seats);
 			        }
 				
 					

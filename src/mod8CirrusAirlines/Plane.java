@@ -2,17 +2,30 @@ package mod8CirrusAirlines;
 
 public class Plane {
 	private Reservation[][] seats;
-	
+
 	public Plane() {
 	}
-	
+
 	public Plane(Reservation[][] s) {
 		seats = s;
 	}
-	
+
 	// remember to change this in the future - Eduardo 12/5
 	public String toString() {
 		return "";
+	}
+	// Need some work. Should handle rows with different columns numbers. - Eduardo 12/7
+	public void printArray() {
+		System.out.println("Here are the seats in this plane. X's means reserved and O's mean available.");
+		for (int row = 0; row < seats.length; row++) {
+			for (int col = 0; col < seats[0].length; col++)
+				if (seats[row][col] == null) {
+					System.out.print("O" + "   ");
+				} else {
+					System.out.print(seats[row][col].getSeat());
+				}
+		}
+		System.out.println();
 	}
 
 	public Reservation[][] getSeats() {
@@ -23,6 +36,3 @@ public class Plane {
 		this.seats = seats;
 	}
 }
-
-
-
