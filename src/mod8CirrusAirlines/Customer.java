@@ -26,6 +26,10 @@ public class Customer {
 		return "Customer [first=" + first + ", last=" + last + ", id=" + id + "]";
 	}
 
+	public String toStringF(){
+		return first + "|" + "last" + "|" + id;
+	}
+
 	//Getters and setters - Eduardo 11/26
 	
 	public String getFirst() {
@@ -51,8 +55,4 @@ public class Customer {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
-
-
 }

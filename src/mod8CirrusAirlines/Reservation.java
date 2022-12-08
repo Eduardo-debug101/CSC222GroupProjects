@@ -28,6 +28,10 @@ public class Reservation {
 	public String toString() {
 		return "Reservation [id=" + id + ", cust=" + cust + ", date=" + date + ", seat=" + seat + "]";
 	}
+
+	public String toStringF(){
+		return cust.toStringF() + "|" + id + "|" + date + "|" + seat;
+	}
 	
 	//Getters and setters - Eduardo 11/26
 	
