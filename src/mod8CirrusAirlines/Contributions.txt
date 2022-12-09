@@ -32,7 +32,6 @@ Note: We need to fix a logic problem where the first two rows can only accepts c
 - Code clean-up and comments
 
 
-
 Cara Eskew:
 12/6/22:
 -Added method to extract second digit of seat.
@@ -56,3 +55,6 @@ Rewrote MenuInfo to reflect this
 printPlaneSeating() now shows the seat ID and customer reservation ID
 ------------
 Bug fixes
+Added different types of seating, like first class etc.
+Economy has a choice between, window, aisle, and normal seating
+

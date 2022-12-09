@@ -19,7 +19,7 @@ public class Customer {
 		first = f;
 		last = l;
 	}
-	
+
 	public Customer(String f, String l, int i) {
 		first = f;
 		last = l;
@@ -31,6 +31,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [first=" + first + ", last=" + last + ", id=" + id + "]";
 	}
+
 
 	public String toStringF(){
 		return first + "|" + last + "|" + id;

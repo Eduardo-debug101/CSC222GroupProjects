@@ -18,11 +18,11 @@ public class NewReservation {
         cust = c;
         seat = s;
     }
-    
+
     public NewReservation(Customer c, String s, int i) {
-    	 cust = c;
-         seat = s;
-         id = i;
+        cust = c;
+        seat = s;
+        id = i;
     }
 
     @Override
