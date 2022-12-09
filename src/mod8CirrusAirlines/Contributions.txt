@@ -36,6 +36,7 @@ Cara Eskew:
 Benjamin Wheatley:
 Plane - Added another way to print out total seats
 Plane - Added an ASCII representation of the seating arrangement for better visibility
+
 MenuInfo - code cleanup
 MenuInfo - renamed some variables for readability
 Reservation/Customer - Started adding in logic for loading in data from a file system
