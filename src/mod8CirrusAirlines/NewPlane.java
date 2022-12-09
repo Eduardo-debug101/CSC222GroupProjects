@@ -1,0 +1,87 @@
+package mod8CirrusAirlines;
+
+import java.time.LocalDate;
+
+public class NewPlane {
+    private NewReservation[][] seats = new NewReservation[4][];
+    private LocalDate flightDate;
+
+    public NewPlane() {
+    }
+
+    public NewPlane(NewReservation[][] seating, LocalDate flightDate) {
+        this.flightDate = flightDate;
+        seats = seating;
+    }
+
+    public NewPlane(LocalDate flightDate) {
+        seats[0] = new NewReservation[2];
+        seats[1] = new NewReservation[2];
+        seats[2] = new NewReservation[8];
+        seats[3] = new NewReservation[8];
+        this.flightDate = flightDate;
+    }
+
+    public LocalDate getFlightDate() {
+        return flightDate;
+    }
+
+    public void setFlightDate(LocalDate flightDate) {
+        this.flightDate = flightDate;
+    }
+
+    // remember to change this in the future - Eduardo 12/5
+    public String toString() {
+        return "";
+    }
+
+
+    public void printPlaneSeating() {
+        System.out.println("Here are the seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
+        System.out.println();
+        for (int row = 0; row < seats.length; row++) {
+            for (int col = 0; col < seats[row].length; col++) {
+                char colLetter = (char)(col + 65);
+                String prefix = colLetter + "" + row + "-";
+                if ((row == 0 || row == 1) && col == 0) {
+                    if (seats[row][col] == null) {
+                        System.out.print(prefix + "000" + "                                                  ");
+                    } else {
+                        System.out.print(prefix + seats[row][col].getCust().getId() + "                                                  ");
+
+                    }
+                } else {
+                    if (seats[row][col] == null) {
+                        System.out.print(prefix + "000" + "  ");
+                    } else {
+                        System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+
+                    }
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+
+    //    0      1      2      3      4      5      6      7
+// ┌──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┐
+// │      │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │      │0
+// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+// │      │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │      │1
+// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+// │      │      │      │      │      │      │      │      │2
+// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+// │      │      │      │      │      │      │      │      │3
+// └──────┴──────┴──────┴──────┴──────┴──────┴──────┴──────┘
+//                           AISLE
+
+    public NewReservation[][] getSeats() {
+        return seats;
+    }
+
+    public void setSeats(NewReservation[][] seats) {
+        this.seats = seats;
+    }
+}

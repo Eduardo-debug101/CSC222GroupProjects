@@ -1,0 +1,73 @@
+package mod8CirrusAirlines;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class NewCirrusDriver {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Customer> cust = new ArrayList<Customer>();
+        //Reservation[][] seats = new Reservation[4][];
+        //seats[0] = new Reservation[2];
+        //seats[1] = new Reservation[2];
+        //seats[2] = new Reservation[8];
+        //seats[3] = new Reservation[8];
+        ArrayList<NewPlane> planesList = new ArrayList<>();
+        NewMenuInfo mi = new NewMenuInfo();
+
+        int ans = 0;
+        while (true) {
+            menu();
+
+            System.out.println("CHOICE:");
+            ans = scan.nextInt();
+
+            switch (ans) {
+                case 0:
+                    mi.loadPresetData(cust, planesList);
+                    System.out.println("Data was successfully loaded!");
+                    break;
+                case 1:
+                    cust.add(mi.createCustomer());
+                    break;
+                case 2:
+                    mi.createReservation(cust, planesList);
+                    break;
+                case 3:
+                    // Placeholder
+                    break;
+                case 4:
+                    System.out.println("Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+                    int resDate = scan.nextInt();
+
+                    if (resDate >= 1 && resDate <= 3) { // Date is valid
+                        NewPlane currentPlane = planesList.get(resDate - 1);
+                        currentPlane.printPlaneSeating();
+                    }
+                    break;
+                case 5:
+                    mi.cancelReservation(cust, planesList);
+                    break;
+                case 6:
+                    System.out.println("See you later!");
+                    System.exit(0);
+            }
+        }
+    }
+
+    public static void menu() {
+        System.out.println("\nCircus Airlines");
+        System.out.println("\n0.  Load preset data.");
+        System.out.println("1.  Add new customer.");
+        System.out.println("2.  Create a reservation.");
+        System.out.println("3.  Print seats available.");
+        System.out.println("4.  Show plane loading.");
+        // Print a unique message once this part is finished - Eduardo 11/26
+        System.out.println("5.  Cancel a reservation.");
+        System.out.println("6.  Exit.\n");
+    }
+
+}
+

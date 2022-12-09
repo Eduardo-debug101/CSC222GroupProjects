@@ -26,6 +26,7 @@ Eduardo J. Argueta-Pineda:
 - Tweaked printArray in Plane for more accuracy
 Note: We need to fix a logic problem where the first two rows can only accepts columns A and H. For now, columns A and B are accepted
 - Small tweaks in MenuInfo
+- Created a custom menu option where reservations can be cancelled
 
 
 Cara Eskew:
@@ -34,10 +35,18 @@ Cara Eskew:
 -Began adding logic to print available seats.
 
 Benjamin Wheatley:
-Plane - Added another way to print out total seats
-Plane - Added an ASCII representation of the seating arrangement for better visibility
-
 MenuInfo - code cleanup
 MenuInfo - renamed some variables for readability
 Reservation/Customer - Started adding in logic for loading in data from a file system
 
+Plane - Added another way to print out total seats
+Plane - Added an ASCII representation of the seating arrangement for better visibility
+------------
+Planes now take a dominate role in how seats are managed
+Each Plane has its own date as well as array of reservations/seats, reservations no longer have their own date
+Customers are kept separate from the Plane object as they can book flights on different days
+
+Rewrote createReservations() for new Plane style
+Removed printSeats() as this can be handled inline easier now
+Rewrote MenuInfo to reflect this
+printPlaneSeating() now shows the seat ID and customer reservation ID
