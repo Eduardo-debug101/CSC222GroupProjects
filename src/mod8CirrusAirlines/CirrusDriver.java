@@ -36,14 +36,13 @@ public class CirrusDriver {
 				}
 					
 				else if (ans == 3) {
-
+					//Added bones of printing the available seats.  Still under development.
+					//We will want to build a way of showing a different array for each date. -CH
+					mi.printSeats(seats);
 			        }
 				
 					
 				else if (ans == 4) {
-					//Added bones of printing the available seats.  Still under development.
-					//We will want to build a way of showing a different array for each date. -CH
-					mi.printSeats(seats);
 					
 				}
 				
