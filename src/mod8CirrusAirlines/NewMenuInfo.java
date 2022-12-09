@@ -103,7 +103,7 @@ public class NewMenuInfo {
                     int userID = scan.nextInt();
 
                     boolean found = false;
-                    Customer currentCustomer = new Customer();
+                    Customer currentCustomer = null;
                     int i = 0;
                     while (!found && i < planes.size()) {
                         if (userID == c.get(i).getId()) {
@@ -121,25 +121,37 @@ public class NewMenuInfo {
 
                         if (resDate >= 1 && resDate <= 3) { // Date is valid
                             NewPlane currentPlane = planes.get(resDate - 1);
-                            System.out.println("You are creating a reservation for Plane #" + (resDate + 1) + " scheduled to leave on " + currentPlane.getFlightDate());
+                            System.out.println("You are creating a reservation for Plane #" + resDate + " scheduled to leave on " + currentPlane.getFlightDate());
 
-                            currentPlane.printPlaneSeating();
+                            //currentPlane.printAllPlaneSeating();
 
-                            System.out.println("Which seat would you like? Type column letter and row number. Ex) A1");
+                            System.out.println("Would you like first class or economy seating? (eco/fir/first class/economy)");
+                            System.out.println("Please note, there are only window seats available for first class.");
                             scan.nextLine();
-                            String seatChoice = scan.nextLine();
+                            String seatingType = scan.nextLine();
 
-                            int num1Col = columnNum(seatChoice);
-                            int num1Row = rowNum(seatChoice);
+                            if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want first class
 
-                            if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] == null) { // Is seat taken
+                                createFirstClassRes(currentCustomer, currentPlane);
 
-                                NewReservation res = new NewReservation(currentCustomer, seatChoice);
-                                currentPlane.getSeats()[num1Row - 1][num1Col - 1] = res;
-                                System.out.println("Seat booked");
+                            } else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want economy
 
-                            } else { // Seat taken
-                                System.out.println("Seat taken");
+                                System.out.println("Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
+                                scan.nextLine();
+                                String ecoSeatType = scan.nextLine();
+
+                                if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
+                                    createEcoRes(currentCustomer, currentPlane, 1);
+                                } else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
+                                    createEcoRes(currentCustomer, currentPlane, 2);
+                                } else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
+                                    createEcoRes(currentCustomer, currentPlane, 3);
+                                } else {
+                                    System.out.println("Invalid seat type. You must choose window/aisle/normal/w/a/n");
+                                }
+
+                            } else { // If the seat type is not valid
+                                System.out.println("Invalid reservation type. You must choose eco/fir/first class/economy");
                             }
 
                         } else {// Date is not valid
@@ -178,7 +190,33 @@ public class NewMenuInfo {
         }
     }
 
-    public void cancelReservation(ArrayList<Customer> c, ArrayList<NewPlane> planes){
+    public void createFirstClassRes(Customer currentCustomer, NewPlane currentPlane) {
+        Scanner scan = new Scanner(System.in);
+
+        currentPlane.printFirstClassSeating();
+
+        System.out.println("Which seat would you like? Type column letter and row number. Ex) A1");
+        String seatChoice = scan.nextLine();
+
+        int num1Col = columnNum(seatChoice) - 1;
+        int num1Row = rowNum(seatChoice) - 1;
+
+        if (currentPlane.getSeats()[num1Row][num1Col] == null) { // Is seat taken
+
+            NewReservation res = new NewReservation(currentCustomer, seatChoice);
+            currentPlane.getSeats()[num1Row][num1Col] = res;
+            System.out.println("Seat booked");
+
+        } else { // Seat taken
+            System.out.println("Seat taken");
+        }
+    }
+
+    public void createEcoRes(Customer c, NewPlane p, int ecoSeatType) {
+
+    }
+
+    public void cancelReservation(ArrayList<Customer> c, ArrayList<NewPlane> planes) {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Do you know your ID#? (yes/no)");
@@ -190,7 +228,7 @@ public class NewMenuInfo {
             int userID = scan.nextInt();
 
             boolean found = false;
-            Customer currentCustomer = new Customer();
+            Customer currentCustomer = null;
             int i = 0;
             while (!found && i < planes.size()) {
                 if (userID == c.get(i).getId()) {
@@ -210,7 +248,7 @@ public class NewMenuInfo {
                     NewPlane currentPlane = planes.get(resDate - 1);
                     System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1) + " scheduled to leave on " + currentPlane.getFlightDate());
 
-                    currentPlane.printPlaneSeating();
+                    currentPlane.printAllPlaneSeating();
 
                     System.out.println("Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
                     scan.nextLine();
@@ -219,16 +257,16 @@ public class NewMenuInfo {
                     int num1Col = columnNum(seatChoice);
                     int num1Row = rowNum(seatChoice);
 
-                    if(currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null){ // Is seat valid
+                    if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null) { // Is seat valid
 
-                        if(currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer.getId()){ // If Customer owns the seat
+                        if (currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer.getId()) { // If Customer owns the seat
                             currentPlane.getSeats()[num1Row - 1][num1Col - 1] = null;
                             System.out.println("Reservation cancelled");
 
-                        }else{ // If they do not own the seat
+                        } else { // If they do not own the seat
                             System.out.println("You do not own this reservation");
                         }
-                    }else{ // Invalid seat
+                    } else { // Invalid seat
                         System.out.println("Invalid seat");
                     }
 

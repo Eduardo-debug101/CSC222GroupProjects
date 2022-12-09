@@ -16,7 +16,7 @@ public class NewCirrusDriver {
         //seats[3] = new Reservation[8];
         ArrayList<NewPlane> planesList = new ArrayList<>();
         NewMenuInfo mi = new NewMenuInfo();
-
+        boolean dataLoaded = false;
         int ans = 0;
         while (true) {
             menu();
@@ -28,27 +28,44 @@ public class NewCirrusDriver {
                 case 0:
                     mi.loadPresetData(cust, planesList);
                     System.out.println("Data was successfully loaded!");
+                    dataLoaded = true;
                     break;
                 case 1:
-                    cust.add(mi.createCustomer());
+                    if(dataLoaded){
+                        cust.add(mi.createCustomer());
+                    }else{
+                        System.out.println("You must load some data first.");
+                    }
                     break;
                 case 2:
-                    mi.createReservation(cust, planesList);
+                    if(dataLoaded){
+                        mi.createReservation(cust, planesList);
+                    }else{
+                        System.out.println("You must load some data first.");
+                    }
                     break;
                 case 3:
                     // Placeholder
                     break;
                 case 4:
-                    System.out.println("Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
-                    int resDate = scan.nextInt();
+                    if(dataLoaded){
+                        System.out.println("Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+                        int resDate = scan.nextInt();
 
-                    if (resDate >= 1 && resDate <= 3) { // Date is valid
-                        NewPlane currentPlane = planesList.get(resDate - 1);
-                        currentPlane.printPlaneSeating();
+                        if (resDate >= 1 && resDate <= 3) { // Date is valid
+                            NewPlane currentPlane = planesList.get(resDate - 1);
+
+                            currentPlane.printAllPlaneSeating();
+                        }                    }else{
+                        System.out.println("You must load some data first.");
                     }
                     break;
                 case 5:
-                    mi.cancelReservation(cust, planesList);
+                    if(dataLoaded){
+                        mi.cancelReservation(cust, planesList);
+                    }else{
+                        System.out.println("You must load some data first.");
+                    }
                     break;
                 case 6:
                     System.out.println("See you later!");
@@ -65,7 +82,7 @@ public class NewCirrusDriver {
         System.out.println("3.  Print seats available.");
         System.out.println("4.  Show plane loading.");
         // Print a unique message once this part is finished - Eduardo 11/26
-        System.out.println("5.  Cancel a reservation.");
+        System.out.println("5.  Extra: Cancel a reservation.");
         System.out.println("6.  Exit.\n");
     }
 

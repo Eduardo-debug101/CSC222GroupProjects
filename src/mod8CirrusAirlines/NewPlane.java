@@ -36,27 +36,32 @@ public class NewPlane {
     }
 
 
-    public void printPlaneSeating() {
+    public void printAllPlaneSeating() {
         System.out.println("Here are the seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
-                char colLetter = (char)(col + 65);
-                String prefix = colLetter + "" + row + "-";
+
+                char colLetter = (char) (col + 65);
+                String prefix = colLetter + "" + (row + 1) + "-";
+
                 if ((row == 0 || row == 1) && col == 0) {
+
                     if (seats[row][col] == null) {
                         System.out.print(prefix + "000" + "                                                  ");
                     } else {
                         System.out.print(prefix + seats[row][col].getCust().getId() + "                                                  ");
-
                     }
+
                 } else {
+
                     if (seats[row][col] == null) {
                         System.out.print(prefix + "000" + "  ");
                     } else {
                         System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
 
                     }
+
                 }
             }
             System.out.println();
@@ -64,8 +69,66 @@ public class NewPlane {
         System.out.println();
     }
 
+    public void printFirstClassSeating() {
+        System.out.println("Here are the first class seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
+        System.out.println();
+        for (int row = 0; row < seats.length; row++) {
+            for (int col = 0; col < seats[row].length; col++) {
 
-    //    0      1      2      3      4      5      6      7
+                if (isFirstClass(col, row)) {
+                    char colLetter = (char) (col + 65);
+                    String prefix = colLetter + "" + (row + 1) + "-";
+
+                    if (seats[row][col] == null) {
+                        System.out.print(prefix + "000" + "  ");
+                    } else {
+                        System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                    }
+
+                    //System.out.println();
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public boolean isFirstClass(int row, int col) {
+
+        if (row == 0 || row == 1) {
+            if (col == 0 || col == 2) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isWindowSeat(int row, int col) {
+
+        if (row == 0 || row == 1) {
+            if (col == 0 || col == 1) {
+                return true;
+            }
+        } else {
+            if (col == 7) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isAisleSeat(int row, int col) {
+        if (row == 2 || row == 3) {
+            if (col == 3 || col == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+//    0      1      2      3      4      5      6      7
+//    A      B      C      D      E      F      G      H
 // ┌──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┐
 // │      │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │      │0
 // ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤

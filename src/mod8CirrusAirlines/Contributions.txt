@@ -38,7 +38,7 @@ Benjamin Wheatley:
 MenuInfo - code cleanup
 MenuInfo - renamed some variables for readability
 Reservation/Customer - Started adding in logic for loading in data from a file system
-
+------------
 Plane - Added another way to print out total seats
 Plane - Added an ASCII representation of the seating arrangement for better visibility
 ------------
@@ -50,3 +50,5 @@ Rewrote createReservations() for new Plane style
 Removed printSeats() as this can be handled inline easier now
 Rewrote MenuInfo to reflect this
 printPlaneSeating() now shows the seat ID and customer reservation ID
+------------
+Bug fixes
