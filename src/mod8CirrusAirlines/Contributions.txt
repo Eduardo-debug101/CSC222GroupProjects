@@ -40,3 +40,4 @@ Plane - Added an ASCII representation of the seating arrangement for better visi
 MenuInfo - code cleanup
 MenuInfo - renamed some variables for readability
 Reservation/Customer - Started adding in logic for loading in data from a file system
+
