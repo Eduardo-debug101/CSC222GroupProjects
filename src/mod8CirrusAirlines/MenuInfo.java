@@ -14,7 +14,7 @@ public class MenuInfo {
 		Customer cust4 = new Customer("Gus", "Carter");
 		Customer cust5 = new Customer("Ward", "Cook");
 
-		Reservation resv1 = new Reservation(cust1, LocalDate.of(2022, 12, 1), "B1");
+		Reservation resv1 = new Reservation(cust1, LocalDate.of(2022, 12, 1), "C3");
 		Reservation resv2 = new Reservation(cust2, LocalDate.of(2022, 12, 1), "D3");
 		Reservation resv3 = new Reservation(cust3, LocalDate.of(2022, 12, 2), "B1");
 		Reservation resv4 = new Reservation(cust4, LocalDate.of(2022, 12, 3), "A1");
@@ -72,17 +72,11 @@ public class MenuInfo {
 	}
 
 	// Creates a reservation object for new or current customers - Eduardo 12/5
-	public void createReservations(ArrayList<Customer> c) {
+	public void createReservations(ArrayList<Customer> c, Reservation[][] seats ) {
 		Scanner scan = new Scanner(System.in);
 		// Creates ragged array of reservation objects - Eduardo 12/5
 		// Might need tweaking for more accuracy
-		Reservation[][] seats = new Reservation[4][];
 		// Creates columns for each row. Aisle is not included. - Eduardo 12/5
-		seats[0] = new Reservation[2];
-		seats[1] = new Reservation[2];
-		seats[2] = new Reservation[4];
-		seats[3] = new Reservation[4];
-
 		System.out.println("Current or new customer?");
 		String status = scan.nextLine();
 
@@ -106,7 +100,9 @@ public class MenuInfo {
 					System.out.println("Customer not found. Try again.");
 				} else if (flag == true) {
 					// Insert print 2d array
-
+					LocalDate date = printSeats(seats);
+					System.out.println("Which seat would you like? Type column letter and row number. Ex) A1");
+					String seatChoice = scan.nextLine();
 				} else {
 					System.out.println("Input unacceptable. Try again.");
 				}
@@ -119,6 +115,9 @@ public class MenuInfo {
 				String last = scan.nextLine();
 				if (c.contains(first) && c.contains(last)) {
 					// Insert print 2d array
+					LocalDate date = printSeats(seats);
+					System.out.println("Which seat would you like? Type column letter and row number. Ex) A1");
+					String seatChoice = scan.nextLine();
 
 				}
 			} else {
@@ -128,6 +127,9 @@ public class MenuInfo {
 		} else if (status.equalsIgnoreCase("New")) {
 			c = loadData();
 			// Insert print 2d array
+			LocalDate date = printSeats(seats);
+			System.out.println("Which seat would you like? Type column letter and row number. Ex) A1");
+			String seatChoice = scan.nextLine();
 
 		} else {
 			System.out.println("Input unacceptable. Try again.");
@@ -150,16 +152,30 @@ public class MenuInfo {
 	}
 
 	// This method will print the number of seats that are available. - Eduardo 12/7
-	public void printSeats(Reservation[][] s) {
+	public LocalDate printSeats(Reservation[][] s) {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println(
 				"Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
 
 		int resDate = scan.nextInt();
-
+		LocalDate date = null;
+		if (resDate == 1) {
+			date = LocalDate.of(2022, 12, 1);
+		}
+		if (resDate == 2) {
+			date = LocalDate.of(2022, 12, 2);
+		}
+		if (resDate == 3) {
+			date = LocalDate.of(2022, 12, 2);
+		}
+		else {
+			System.out.println("Invalid Input. Try again.");
+		}
+		
 		Plane p = new Plane(s);
 		p.printArray();
 		
+		return date;
 }
 }

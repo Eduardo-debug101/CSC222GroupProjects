@@ -12,8 +12,8 @@ public class CirrusDriver {
 		Reservation[][] seats = new Reservation[4][];
 		seats[0] = new Reservation[2];
 		seats[1] = new Reservation[2];
-		seats[2] = new Reservation[4];
-		seats[3] = new Reservation[4];
+		seats[2] = new Reservation[8];
+		seats[3] = new Reservation[8];
 		MenuInfo mi = new MenuInfo();
 		
 		int ans = 0;
@@ -32,27 +32,12 @@ public class CirrusDriver {
 					cust = mi.loadData();	
 				
 				else if (ans == 2) {
-					mi.createReservations(cust);
+					mi.createReservations(cust,seats);
 				}
 					
 				else if (ans == 3) {
 					//Added bones of printing the available seats.  Still under development.
 					//We will want to build a way of showing a different array for each date. -CH
-//					
-//					System.out.println("Which date are you inquiring about?  "
-//							+ "Type 1 for the first, 2 for the second, or 3 for the third.");
-//					
-//					int resDate = scan.nextInt();
-					
-				/*	for (int i = 0; i < seats.length; i++) {
-			            for (int j = 0; j < seats[i].length; j++)
-			                if (seats[i][j]==null) {
-			                	System.out.print("Avail ");
-			                }
-			                else {
-			                	System.out.print(seats[i][j].getSeat());
-			                }
-			            System.out.println();*/
 					mi.printSeats(seats);
 			        }
 				

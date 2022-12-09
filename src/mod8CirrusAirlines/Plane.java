@@ -14,32 +14,31 @@ public class Plane {
 	public String toString() {
 		return "";
 	}
+
 	// Need some work. Should handle rows with different columns numbers. - Eduardo 12/7
+	// Tweaked it more today. Should be mostly accurate. - Eduardo 12/8
 	public void printArray() {
-		System.out.println("Here are the seats in this plane. X's means reserved and O's mean available.");
+		System.out.println("Here are the seats in this plane. O's mean available and the numbers represent customer's ids.");
 		for (int row = 0; row < 2; row++) {
-			for (int col = 0; col < seats[0].length; col++)
-				if (seats[0][col] == null || seats[1][col] == null) {
-					System.out.print("O" + "   ");
-				} 
-//				else if (seats[2][col] == null || seats[3][col] == null) {
-//					System.out.print("O" + "   ");
-//				}
-				else {
-					System.out.print(seats[row][col].getSeat());
+			for (int col = 0; col < seats[0].length; col++) {
+				if (seats[row][col] == null) {
+					System.out.print("O" + "\t\t\t    ");
+				} else {
+					System.out.print(seats[row][col].getCust().getId() + "\t\t\t    ");
 				}
+			}
 			System.out.println();
 		}
 		System.out.println();
 		
-		for (int row = 0; row < 2; row++) {
-			for (int col = 0; col < seats[2].length; col++)
-				if (seats[2][col] == null || seats[3][col] == null) {
+		for (int row = 2; row < 4; row++) {
+			for (int col = 0; col < seats[2].length; col++) {
+				if (seats[row][col] == null) {
 					System.out.print("O" + "   ");
+				} else {
+					System.out.print(seats[row][col].getCust().getId() + " ");
 				}
-				else {
-					System.out.print(seats[row][col].getSeat());
-				}
+			}
 			System.out.println();
 		}
 		System.out.println();
