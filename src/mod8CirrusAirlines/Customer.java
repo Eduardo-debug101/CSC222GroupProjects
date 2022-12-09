@@ -19,6 +19,12 @@ public class Customer {
 		first = f;
 		last = l;
 	}
+	
+	public Customer(String f, String l, int i) {
+		first = f;
+		last = l;
+		id = i;
+	}
 
 	@Override
 	// Auto generated toString; change if needed - Eduardo 11/26
@@ -27,7 +33,7 @@ public class Customer {
 	}
 
 	public String toStringF(){
-		return first + "|" + "last" + "|" + id;
+		return first + "|" + last + "|" + id;
 	}
 
 	//Getters and setters - Eduardo 11/26

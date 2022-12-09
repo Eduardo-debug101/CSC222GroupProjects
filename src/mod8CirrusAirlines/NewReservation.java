@@ -18,6 +18,12 @@ public class NewReservation {
         cust = c;
         seat = s;
     }
+    
+    public NewReservation(Customer c, String s, int i) {
+    	 cust = c;
+         seat = s;
+         id = i;
+    }
 
     @Override
     // Auto generated toString; change if needed - Eduardo 11/26

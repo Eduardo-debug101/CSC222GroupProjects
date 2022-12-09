@@ -27,6 +27,10 @@ Eduardo J. Argueta-Pineda:
 Note: We need to fix a logic problem where the first two rows can only accepts columns A and H. For now, columns A and B are accepted
 - Small tweaks in MenuInfo
 - Created a custom menu option where reservations can be cancelled
+11/9/22:
+- Implemented new menu options that can save and load reservation data for each customer
+- Code clean-up and comments
+
 
 
 Cara Eskew:
