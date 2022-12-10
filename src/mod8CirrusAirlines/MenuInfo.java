@@ -338,7 +338,7 @@ public class MenuInfo {
             boolean found = false;
             Customer currentCustomer = null;
             int i = 0;
-            while (!found && i < planes.size()) {
+            while (!found && i < c.size()) {
                 if (userID == c.get(i).getId()) {
                     System.out.println("ID valid");
                     currentCustomer = c.get(i);
@@ -425,7 +425,7 @@ public class MenuInfo {
 
         if (resDate >= 1 && resDate <= 3) { // Date is valid
             Plane currentPlane = planes.get(resDate - 1);
-            System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1)
+            System.out.println("You are cancelling a reservation for Plane #" + resDate
                     + " scheduled to leave on " + currentPlane.getFlightDate());
 
             currentPlane.printAllPlaneSeating();
@@ -434,6 +434,11 @@ public class MenuInfo {
                     "Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
             scan.nextLine();
             String seatChoice = scan.nextLine();
+
+            if (seatChoice.toLowerCase().charAt(0) == 'h' && (seatChoice.charAt(1) == '0' || seatChoice.charAt(1) == '1')) {
+                char temp = seatChoice.charAt(1);
+                seatChoice = "B" + temp;
+            }
 
             int num1Col = columnNum(seatChoice);
             int num1Row = rowNum(seatChoice);
