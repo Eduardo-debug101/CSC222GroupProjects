@@ -11,8 +11,12 @@ public class Reservation {
         cust = c;
         seat = s;
     }
+    
+	public String toString() {
+		return "Reservation [cust=" + cust + ", seat=" + seat + "]";
+	}
 
-    public String toStringF(){
+	public String toStringF(){
         return cust.toStringF() + "|" + seat;
     }
 
