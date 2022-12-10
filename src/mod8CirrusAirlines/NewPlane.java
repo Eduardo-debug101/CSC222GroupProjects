@@ -48,6 +48,17 @@ public class NewPlane {
         return seatInfo;
     }
 
+    public boolean alreadyHasReservation(Customer c) {
+        for (int row = 0; row < seats.length; row++) {
+            for (int col = 0; col < seats[row].length; col++) {
+                if(seats[row][col] != null && seats[row][col].getCust().getId() == c.getId()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void printAllPlaneSeating() {
         System.out.println("Here are the seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
         System.out.println();
@@ -99,7 +110,7 @@ public class NewPlane {
                     if (col == 0 || col == 1) {
                         char colLetter = (char) (col + 65);
                         String prefix = colLetter + "" + (row + 1) + "-";
-                        if(col == 1){
+                        if (col == 1) {
                             prefix = 'H' + "" + (row + 1) + "-";
                         }
                         if (seats[row][col] == null) {
@@ -121,7 +132,7 @@ public class NewPlane {
         }
     }
 
-    public void printEcoWindowSeats(){
+    public void printEcoWindowSeats() {
         System.out.println("Here are the economy window seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
@@ -150,7 +161,7 @@ public class NewPlane {
         }
     }
 
-    public void printEcoAisleSeats(){
+    public void printEcoAisleSeats() {
         System.out.println("Here are the economy aisle seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
@@ -179,7 +190,7 @@ public class NewPlane {
         }
     }
 
-    public void printEcoNormalSeats(){
+    public void printEcoNormalSeats() {
         System.out.println("Here are the economy normal seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
         System.out.println();
         for (int row = 0; row < seats.length; row++) {

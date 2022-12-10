@@ -127,36 +127,42 @@ public class NewMenuInfo {
 
                         if (resDate >= 1 && resDate <= 3) { // Date is valid
                             NewPlane currentPlane = planes.get(resDate - 1);
-                            System.out.println("You are creating a reservation for Plane #" + resDate + " scheduled to leave on " + currentPlane.getFlightDate());
 
-                            //currentPlane.printAllPlaneSeating();
+                            if(!currentPlane.alreadyHasReservation(currentCustomer)){
 
-                            System.out.println("Would you like first class or economy seating? (eco/fir/first class/economy)");
-                            System.out.println("Please note, there are only window seats available for first class.");
-                            scan.nextLine();
-                            String seatingType = scan.nextLine();
+                                System.out.println("You are creating a reservation for Plane #" + resDate + " scheduled to leave on " + currentPlane.getFlightDate());
 
-                            if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want first class
+                                //currentPlane.printAllPlaneSeating();
 
-                                createFirstClassRes(currentCustomer, currentPlane);
+                                System.out.println("Would you like first class or economy seating? (eco/fir/first class/economy)");
+                                System.out.println("Please note, there are only window seats available for first class.");
+                                scan.nextLine();
+                                String seatingType = scan.nextLine();
 
-                            } else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want economy
+                                if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want first class
 
-                                System.out.println("Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
-                                String ecoSeatType = scan.nextLine();
+                                    createFirstClassRes(currentCustomer, currentPlane);
 
-                                if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
-                                    createEcoRes(currentCustomer, currentPlane, 1);
-                                } else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
-                                    createEcoRes(currentCustomer, currentPlane, 2);
-                                } else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
-                                    createEcoRes(currentCustomer, currentPlane, 3);
-                                } else {
-                                    System.out.println("Invalid seat type. You must choose window/aisle/normal/w/a/n");
+                                } else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want economy
+
+                                    System.out.println("Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
+                                    String ecoSeatType = scan.nextLine();
+
+                                    if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
+                                        createEcoRes(currentCustomer, currentPlane, 1);
+                                    } else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
+                                        createEcoRes(currentCustomer, currentPlane, 2);
+                                    } else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
+                                        createEcoRes(currentCustomer, currentPlane, 3);
+                                    } else {
+                                        System.out.println("Invalid seat type. You must choose window/aisle/normal/w/a/n");
+                                    }
+
+                                } else { // If the seat type is not valid
+                                    System.out.println("Invalid reservation type. You must choose eco/fir/first class/economy");
                                 }
-
-                            } else { // If the seat type is not valid
-                                System.out.println("Invalid reservation type. You must choose eco/fir/first class/economy");
+                            }else{ // Already has a reservation
+                                System.out.println("You already have a reservation on this plane. You must cancel it before making another.");
                             }
 
                         } else {// Date is not valid
