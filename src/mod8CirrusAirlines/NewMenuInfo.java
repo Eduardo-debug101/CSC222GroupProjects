@@ -120,63 +120,63 @@ public class NewMenuInfo {
 					}
 
 					if (found) { // ID is found and valid
-
-						System.out.println("Which date are you inquiring about?  "
-								+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
-						int resDate = scan.nextInt();
-
-						if (resDate >= 1 && resDate <= 3) { // Date is valid
-							NewPlane currentPlane = planes.get(resDate - 1);
-
-							if (!currentPlane.alreadyHasReservation(currentCustomer)) {
-
-								System.out.println("You are creating a reservation for Plane #" + resDate
-										+ " scheduled to leave on " + currentPlane.getFlightDate());
-
-								// currentPlane.printAllPlaneSeating();
-
-								System.out.println(
-										"Would you like first class or economy seating? (eco/fir/first class/economy)");
-								System.out
-										.println("Please note, there are only window seats available for first class.");
-								scan.nextLine();
-								String seatingType = scan.nextLine();
-
-								if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want
-																										// first class
-
-									createFirstClassRes(currentCustomer, currentPlane);
-
-								} else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want
-																											// economy
-
-									System.out.println(
-											"Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
-									String ecoSeatType = scan.nextLine();
-
-									if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
-										createEcoRes(currentCustomer, currentPlane, 1);
-									} else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
-										createEcoRes(currentCustomer, currentPlane, 2);
-									} else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
-										createEcoRes(currentCustomer, currentPlane, 3);
-									} else {
-										System.out.println(
-												"Invalid seat type. You must choose window/aisle/normal/w/a/n");
-									}
-
-								} else { // If the seat type is not valid
-									System.out.println(
-											"Invalid reservation type. You must choose eco/fir/first class/economy");
-								}
-							} else { // Already has a reservation
-								System.out.println(
-										"You already have a reservation on this plane. You must cancel it before making another.");
-							}
-
-						} else {// Date is not valid
-							System.out.println("Invalid date.");
-						}
+						createSeats(userID, currentCustomer, planes, c);
+//						System.out.println("Which date are you inquiring about?  "
+//								+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+//						int resDate = scan.nextInt();
+//
+//						if (resDate >= 1 && resDate <= 3) { // Date is valid
+//							NewPlane currentPlane = planes.get(resDate - 1);
+//
+//							if (!currentPlane.alreadyHasReservation(currentCustomer)) {
+//
+//								System.out.println("You are creating a reservation for Plane #" + resDate
+//										+ " scheduled to leave on " + currentPlane.getFlightDate());
+//
+//								// currentPlane.printAllPlaneSeating();
+//
+//								System.out.println(
+//										"Would you like first class or economy seating? (eco/fir/first class/economy)");
+//								System.out
+//										.println("Please note, there are only window seats available for first class.");
+//								scan.nextLine();
+//								String seatingType = scan.nextLine();
+//
+//								if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want
+//																										// first class
+//
+//									createFirstClassRes(currentCustomer, currentPlane);
+//
+//								} else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want
+//																											// economy
+//
+//									System.out.println(
+//											"Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
+//									String ecoSeatType = scan.nextLine();
+//
+//									if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
+//										createEcoRes(currentCustomer, currentPlane, 1);
+//									} else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
+//										createEcoRes(currentCustomer, currentPlane, 2);
+//									} else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
+//										createEcoRes(currentCustomer, currentPlane, 3);
+//									} else {
+//										System.out.println(
+//												"Invalid seat type. You must choose window/aisle/normal/w/a/n");
+//									}
+//
+//								} else { // If the seat type is not valid
+//									System.out.println(
+//											"Invalid reservation type. You must choose eco/fir/first class/economy");
+//								}
+//							} else { // Already has a reservation
+//								System.out.println(
+//										"You already have a reservation on this plane. You must cancel it before making another.");
+//							}
+//
+//						} else {// Date is not valid
+//							System.out.println("Invalid date.");
+//						}
 
 					} else { // ID is not valid
 						System.out.println("ID not valid");
@@ -191,24 +191,93 @@ public class NewMenuInfo {
 
 					boolean found = false;
 					int i = 0;
+					int userID = 0;
+					Customer currentCustomer = null;
 					while (!found && i < c.size()) {
 						String foundFirst = c.get(i).getFirst();
 						String foundLast = c.get(i).getLast();
-						int userID = c.get(i).getId();
+						userID = c.get(i).getId();
 						if (foundFirst.equals(first) && foundLast.equals(last)) {
 							System.out.println("We found your ID based on your name: " + userID);
+							currentCustomer = c.get(i);
 							found = true;
 						}
 						i++;
 					}
+					
+					createSeats(userID, currentCustomer, planes, c);
 				}
 
 			} else { // Not a current customer
 				c.add(createCustomer());
+				int userID = c.get(c.size()-1).getId();
+				Customer currentCustomer = c.get(c.size()-1);
+				createSeats(userID, currentCustomer, planes, c);
 			}
 		} else { // Invalid
 			System.out.println("Invalid answer: Current or new customer? (c/n/current/new)");
 		}
+	}
+	
+	public void createSeats(int id, Customer currentCustomer, ArrayList<NewPlane> planes, ArrayList<Customer> c ) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Which date are you inquiring about?  "
+				+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+		int resDate = scan.nextInt();
+
+		if (resDate >= 1 && resDate <= 3) { // Date is valid
+			NewPlane currentPlane = planes.get(resDate - 1);
+
+			if (!currentPlane.alreadyHasReservation(currentCustomer)) {
+
+				System.out.println("You are creating a reservation for Plane #" + resDate
+						+ " scheduled to leave on " + currentPlane.getFlightDate());
+
+				// currentPlane.printAllPlaneSeating();
+
+				System.out.println(
+						"Would you like first class or economy seating? (eco/fir/first class/economy)");
+				System.out
+						.println("Please note, there are only window seats available for first class.");
+				scan.nextLine();
+				String seatingType = scan.nextLine();
+
+				if (seatingType.equals("first class") || seatingType.equals("fir")) { // If they want
+																						// first class
+
+					createFirstClassRes(currentCustomer, currentPlane);
+
+				} else if (seatingType.equals("eco") || seatingType.equals("economy")) { // If they want
+																							// economy
+
+					System.out.println(
+							"Would you like a window, aisle, or normal seat? (window/aisle/normal/w/a/n)");
+					String ecoSeatType = scan.nextLine();
+
+					if (ecoSeatType.equals("window") || ecoSeatType.equals("w")) {
+						createEcoRes(currentCustomer, currentPlane, 1);
+					} else if (ecoSeatType.equals("aisle") || ecoSeatType.equals("a")) {
+						createEcoRes(currentCustomer, currentPlane, 2);
+					} else if (ecoSeatType.equals("normal") || ecoSeatType.equals("n")) {
+						createEcoRes(currentCustomer, currentPlane, 3);
+					} else {
+						System.out.println(
+								"Invalid seat type. You must choose window/aisle/normal/w/a/n");
+					}
+
+				} else { // If the seat type is not valid
+					System.out.println(
+							"Invalid reservation type. You must choose eco/fir/first class/economy");
+				}
+			} else { // Already has a reservation
+				System.out.println(
+						"You already have a reservation on this plane. You must cancel it before making another.");
+			}
+
+		} else {// Date is not valid
+			System.out.println("Invalid date.");
+		}
+		
 	}
 
 	public void createFirstClassRes(Customer currentCustomer, NewPlane currentPlane) {
