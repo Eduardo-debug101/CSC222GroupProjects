@@ -34,7 +34,7 @@ The user is then instructed to type a number from 0-8.
 
 NOTE: To load plane data into the program, the file needs to be a .txt file and formatted as so:
 
-first_name|last_name|cust_id|seat_id|seat|date
+first_name|last_name|cust_id|seat|date
 Christina|Hart|100|100|C3|12/1/2022
 Rosario|Barrett|101|101|D3|12/1/2022
 Christine|Mckinney|102|102|B1|12/2/2022
