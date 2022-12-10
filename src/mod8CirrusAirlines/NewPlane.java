@@ -58,6 +58,38 @@ public class NewPlane {
         }
         return false;
     }
+    
+    public void printSomeSeating() {
+    	System.out.println("The following seats are open.");
+    	 for (int row = 0; row < seats.length; row++) {
+             for (int col = 0; col < seats[row].length; col++) {
+
+                 char colLetter = (char) (col + 65);
+                 String prefix = colLetter + "" + (row + 1);
+
+                 if (row == 0 || row == 1) {
+                     if (col == 0) {
+                         if (seats[row][col] == null) {
+                             System.out.print(prefix + " ");
+                         } 
+                     } else {
+                         prefix = "H" + "" + (row + 1);
+                         if (seats[row][col] == null) {
+                             System.out.print(prefix + " ");
+                         } 
+                     }
+
+                 } else {
+                     if (seats[row][col] == null) {
+                         System.out.print(prefix + " ");
+                     } 
+                 }
+             }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    	
 
     public void printAllPlaneSeating() {
         System.out.println("Here are the seats in this plane. First 2 letters are the seating ID, and the next 3 are the customer ID. 000 ID seats are open seats:");
@@ -243,18 +275,6 @@ public class NewPlane {
     //    return false;
     //}
 
-//    0      1      2      3      4      5      6      7
-//    A      B      C      D      E      F      G      H
-// ┌──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┐
-// │      │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │      │0
-// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
-// │      │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │ XXX  │      │1
-// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
-// │      │      │      │      │      │      │      │      │2
-// ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
-// │      │      │      │      │      │      │      │      │3
-// └──────┴──────┴──────┴──────┴──────┴──────┴──────┴──────┘
-//                           AISLE
 
     public NewReservation[][] getSeats() {
         return seats;

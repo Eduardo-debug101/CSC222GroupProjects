@@ -70,6 +70,7 @@ public class NewMenuInfo {
         planesList.get(2).getSeats()[num4Row - 1][num4Col - 1] = resv4;
         planesList.get(2).getSeats()[num5Row - 1][num5Col - 1] = resv5;
     }
+    
 
     // Creates a customer object and is added to an arraylist in main driver -
     // Eduardo 12/5
@@ -121,6 +122,7 @@ public class NewMenuInfo {
                     }
 
                     if (found) { // ID is found and valid
+                    	//seatSelection(currentCustomer, c, planes);
 
                         System.out.println("Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
                         int resDate = scan.nextInt();
@@ -185,8 +187,9 @@ public class NewMenuInfo {
                     while (!found && i < c.size()) {
                         String foundFirst = c.get(i).getFirst();
                         String foundLast = c.get(i).getLast();
+                        int userID = c.get(i).getId();
                         if (foundFirst.equals(first) && foundLast.equals(last)) {
-                            System.out.println("We found your ID based on your name: " + c.get(i).getId());
+                            System.out.println("We found your ID based on your name: " + userID);
                             found = true;
                         }
                         i++;
@@ -200,6 +203,8 @@ public class NewMenuInfo {
             System.out.println("Invalid answer: Current or new customer? (c/n/current/new)");
         }
     }
+    
+    
 
     public void createFirstClassRes(Customer currentCustomer, NewPlane currentPlane) {
         Scanner scan = new Scanner(System.in);
@@ -274,6 +279,19 @@ public class NewMenuInfo {
         } else {
             System.out.println("Invalid seat for your selected seat type.");
         }
+    }
+    
+    public void openSeats(ArrayList<NewPlane> planes) {
+    	  Scanner scan = new Scanner(System.in);
+    
+    	 System.out.println("Which date are you inquiring about?  " + "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+         int resDate = scan.nextInt();
+
+         if (resDate >= 1 && resDate <= 3) {
+        	 NewPlane currentPlane = planes.get(resDate - 1);
+        	 currentPlane.printSomeSeating();
+         
+         }
     }
 
     public void cancelReservation(ArrayList<Customer> c, ArrayList<NewPlane> planes) {
@@ -373,6 +391,7 @@ public class NewMenuInfo {
         int row = (int) Integer.parseInt(rowString);
         return row;
     }
+
 
 
     // Saves data to a file. - Eduardo 12/9

@@ -30,6 +30,7 @@ Note: We need to fix a logic problem where the first two rows can only accepts c
 11/9/22:
 - Implemented new menu options that can save and load reservation data for each customer
 - Code clean-up and comments
+- Created readme.txt
 
 
 Cara Eskew:
