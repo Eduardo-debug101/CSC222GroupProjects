@@ -5,7 +5,7 @@ A simple Java program made to simulate an airline's reservation system.
 - Creates an account for each customer that is registered. Each customer gets a unique id number.
 - Creates reservations for current or new customers. 
 - Loads and saves data about reservations and customers. 
-- Can cancel reservations for current customers with either their name or unique id number. 
+- Can cancel reservations for current customers with their unique id number. 
 
 # Installation (Eclipse only)
 1. Open Eclipse.
@@ -21,7 +21,8 @@ Once the program is launched, it will ask the user to choice from 9 different me
 
 0.  Load preset data. - Loads data for testing purposes.
 1.  Add new customer. - Creates an account for a customer. Asks for first name and last name. 
-2.  Create a reservation. - Creates a reservation for new or current customers. Asks whether the customer prefers a window seat, an aisle seat, or neither.
+2.  Create a reservation. - Creates a reservation for new or current customers. Asks whether the customer prefers a first class seat (window only), an economy seat with a window seat, an aisle seat, 
+    or neither.
 3.  Print seats available. - Prints out a list of available seats for a specific date.
 4.  Show plane loading. - Shows a diagram of the plane which shows avaliable and occupied seats for a specific date.
 5.  Extra: Cancel a reservation. - Cancels a reservation using a customer's full name or id number.
