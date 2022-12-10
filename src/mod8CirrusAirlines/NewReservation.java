@@ -25,12 +25,6 @@ public class NewReservation {
         id = i;
     }
 
-    @Override
-    // Auto generated toString; change if needed - Eduardo 11/26
-    public String toString() {
-        return "Reservation [id=" + id + ", cust=" + cust + ", seat=" + seat + "]";
-    }
-
     public String toStringF(){
         return cust.toStringF() + "|" + id + "|" + seat;
     }

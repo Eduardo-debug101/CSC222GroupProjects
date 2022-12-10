@@ -32,16 +32,14 @@ public class NewPlane {
     }
 
     // remember to change this in the future - Eduardo 12/5
-    public String toString() {
-        return "";
-    }
-
+ 
     public ArrayList<String> toStringF() {
         ArrayList<String> seatInfo = new ArrayList<>();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
-                if (seats[row][col] != null)
-                    seatInfo.add(seats[row][col].toStringF() + "|" + flightDate.getMonthValue() + "/"
+            	NewReservation current = seats[row][col];
+                if (current != null)
+                    seatInfo.add(current.toStringF() + "|" + flightDate.getMonthValue() + "/"
                             + flightDate.getDayOfMonth() + "/" + flightDate.getYear());
             }
         }
@@ -51,7 +49,8 @@ public class NewPlane {
     public boolean alreadyHasReservation(Customer c) {
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
-                if(seats[row][col] != null && seats[row][col].getCust().getId() == c.getId()){
+            	NewReservation current = seats[row][col];
+                if(current != null && current.getCust().getId() == c.getId()){
                     return true;
                 }
             }
@@ -63,24 +62,25 @@ public class NewPlane {
     	System.out.println("The following seats are open.");
     	 for (int row = 0; row < seats.length; row++) {
              for (int col = 0; col < seats[row].length; col++) {
-
+            	 NewReservation current = seats[row][col];
+            	 
                  char colLetter = (char) (col + 65);
                  String prefix = colLetter + "" + (row + 1);
 
                  if (row == 0 || row == 1) {
                      if (col == 0) {
-                         if (seats[row][col] == null) {
+                         if (current == null) {
                              System.out.print(prefix + " ");
                          } 
                      } else {
                          prefix = "H" + "" + (row + 1);
-                         if (seats[row][col] == null) {
+                         if (current == null) {
                              System.out.print(prefix + " ");
                          } 
                      }
 
                  } else {
-                     if (seats[row][col] == null) {
+                     if (current == null) {
                          System.out.print(prefix + " ");
                      } 
                  }
@@ -96,23 +96,24 @@ public class NewPlane {
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
+            	 NewReservation current = seats[row][col];
 
                 char colLetter = (char) (col + 65);
                 String prefix = colLetter + "" + (row + 1) + "-";
 
                 if (row == 0 || row == 1) {
                     if (col == 0) {
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "                                                  ");
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "                                                  ");
+                            System.out.print(prefix + current.getCust().getId() + "                                                  ");
                         }
                     } else {
                         prefix = "H" + "" + (row + 1) + "-";
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "  ");
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                            System.out.print(prefix + current.getCust().getId() + "  ");
                         }
                     }
 
@@ -121,7 +122,7 @@ public class NewPlane {
                     if (seats[row][col] == null) {
                         System.out.print(prefix + "000" + "  ");
                     } else {
-                        System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                        System.out.print(prefix + current.getCust().getId() + "  ");
 
                     }
 
@@ -137,6 +138,7 @@ public class NewPlane {
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
+            	NewReservation current = seats[row][col];
 
                 if (row == 0 || row == 1) {
                     if (col == 0 || col == 1) {
@@ -145,14 +147,14 @@ public class NewPlane {
                         if (col == 1) {
                             prefix = 'H' + "" + (row + 1) + "-";
                         }
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "  ");
                             if (col == 0) {
                                 System.out.print("AISLE  ");
                             }
 
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                            System.out.print(prefix + current.getCust().getId() + "  ");
                             if (col == 0) {
                                 System.out.print("AISLE  ");
                             }
@@ -169,19 +171,20 @@ public class NewPlane {
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
+            	NewReservation current = seats[row][col];
 
                 if (row > 1) {
                     if (col == 0 || col == 7) {
                         char colLetter = (char) (col + 65);
                         String prefix = colLetter + "" + (row + 1) + "-";
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "  ");
                             if (col == 0) {
                                 System.out.print("AISLE  ");
                             }
 
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                            System.out.print(prefix + current.getCust().getId() + "  ");
                             if (col == 0) {
                                 System.out.print("AISLE  ");
                             }
@@ -198,19 +201,20 @@ public class NewPlane {
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
+            	NewReservation current = seats[row][col];
 
                 if (row > 1) {
                     if (col == 3 || col == 4) {
                         char colLetter = (char) (col + 65);
                         String prefix = colLetter + "" + (row + 1) + "-";
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "  ");
                             if (col == 3) {
                                 System.out.print("AISLE  ");
                             }
 
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
+                            System.out.print(prefix + current.getCust().getId() + "  ");
                             if (col == 3) {
                                 System.out.print("AISLE  ");
                             }
@@ -227,22 +231,16 @@ public class NewPlane {
         System.out.println();
         for (int row = 0; row < seats.length; row++) {
             for (int col = 0; col < seats[row].length; col++) {
+            	NewReservation current = seats[row][col];
 
                 if (row > 1) {
                     if (col != 0 && col != 3 && col != 4 && col != 7) {
                         char colLetter = (char) (col + 65);
                         String prefix = colLetter + "" + (row + 1) + "-";
-                        if (seats[row][col] == null) {
+                        if (current == null) {
                             System.out.print(prefix + "000" + "  ");
-                            //if (col == 3) {
-                            //    System.out.print("AISLE  ");
-                            //}
-
                         } else {
-                            System.out.print(prefix + seats[row][col].getCust().getId() + "  ");
-                            //if (col == 3) {
-                            //    System.out.print("AISLE  ");
-                            //}
+                            System.out.print(prefix + current.getCust().getId() + "  ");
                         }
                     }
                 }
@@ -250,32 +248,7 @@ public class NewPlane {
             System.out.println();
         }
     }
-
-    //public boolean isWindowSeat(int row, int col) {
-    //
-    //    if (row == 0 || row == 1) {
-    //        if (col == 0 || col == 1) {
-    //            return true;
-    //        }
-    //    } else {
-    //        if (col == 7) {
-    //            return true;
-    //        }
-    //    }
-    //
-    //    return false;
-    //}
-    //
-    //public boolean isAisleSeat(int row, int col) {
-    //    if (row == 2 || row == 3) {
-    //        if (col == 3 || col == 4) {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
-
-
+    
     public NewReservation[][] getSeats() {
         return seats;
     }

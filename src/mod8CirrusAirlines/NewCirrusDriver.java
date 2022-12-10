@@ -10,11 +10,6 @@ public class NewCirrusDriver {
 
 		Scanner scan = new Scanner(System.in);
 		ArrayList<Customer> cust = new ArrayList<Customer>();
-		// Reservation[][] seats = new Reservation[4][];
-		// seats[0] = new Reservation[2];
-		// seats[1] = new Reservation[2];
-		// seats[2] = new Reservation[8];
-		// seats[3] = new Reservation[8];
 		ArrayList<NewPlane> planesList = new ArrayList<>();
 		NewMenuInfo mi = new NewMenuInfo();
 		boolean dataLoaded = false;
