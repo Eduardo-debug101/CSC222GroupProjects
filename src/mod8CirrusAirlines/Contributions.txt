@@ -59,4 +59,5 @@ Bug fixes
 Added different types of seating, like first class etc.
 Economy has a choice between, window, aisle, and normal seating
 Fixed ID search bug
-
+Tweaked alreadyHasReservation()
+Renamed all New files to orginal
