@@ -349,43 +349,6 @@ public class MenuInfo {
 
             if (found) { // ID is found and valid
                 cancelSeats(userID, currentCustomer, planes, c);
-//				System.out.println("Which date are you inquiring about?  "
-//						+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
-//				int resDate = scan.nextInt();
-//
-//				if (resDate >= 1 && resDate <= 3) { // Date is valid
-//					NewPlane currentPlane = planes.get(resDate - 1);
-//					System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1)
-//							+ " scheduled to leave on " + currentPlane.getFlightDate());
-//
-//					currentPlane.printAllPlaneSeating();
-//
-//					System.out.println(
-//							"Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
-//					scan.nextLine();
-//					String seatChoice = scan.nextLine();
-//
-//					int num1Col = columnNum(seatChoice);
-//					int num1Row = rowNum(seatChoice);
-//
-//					if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null) { // Is seat valid
-//
-//						if (currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer
-//								.getId()) { // If Customer owns the seat
-//							currentPlane.getSeats()[num1Row - 1][num1Col - 1] = null;
-//							System.out.println("Reservation cancelled");
-//
-//						} else { // If they do not own the seat
-//							System.out.println("You do not own this reservation");
-//						}
-//					} else { // Invalid seat
-//						System.out.println("Invalid seat");
-//					}
-//
-//				} else {// Date is not valid
-//					System.out.println("Invalid date.");
-//				}
-
             } else { // ID is not valid
                 System.out.println("ID not valid");
             }
@@ -485,7 +448,7 @@ public class MenuInfo {
         try {
             outputFile = new PrintWriter(filename);
             // Creates header for the file - Eduardo 12/9
-            outputFile.println("first_name|last_name|cust_id|seat_id|seat|date");
+            outputFile.println("first_name|last_name|cust_id|seat|date");
             for (int i = 0; i < planes.size(); i++) {
                 Plane p = planes.get(i);
                 ArrayList<String> seatInfo = p.toStringF();
@@ -535,12 +498,11 @@ public class MenuInfo {
                     // Eduardo 12/9
                     Customer c = new Customer(first, last, id);
                     cust.add(c);
-                    int seatId = Integer.parseInt(t.nextToken().trim());
                     String seat = t.nextToken().trim();
                     int numCol = columnNum(seat);
                     int numRow = rowNum(seat);
                     // Creates an instance of Reservation
-                    Reservation n = new Reservation(c, seat, seatId);
+                    Reservation n = new Reservation(c, seat);
                     int mon = Integer.parseInt(t.nextToken().trim());
                     int day = Integer.parseInt(t.nextToken().trim());
                     int year = Integer.parseInt(t.nextToken().trim());
