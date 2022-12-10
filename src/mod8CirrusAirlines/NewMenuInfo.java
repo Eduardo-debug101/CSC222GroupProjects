@@ -394,43 +394,43 @@ public class NewMenuInfo {
 			}
 
 			if (found) { // ID is found and valid
-
-				System.out.println("Which date are you inquiring about?  "
-						+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
-				int resDate = scan.nextInt();
-
-				if (resDate >= 1 && resDate <= 3) { // Date is valid
-					NewPlane currentPlane = planes.get(resDate - 1);
-					System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1)
-							+ " scheduled to leave on " + currentPlane.getFlightDate());
-
-					currentPlane.printAllPlaneSeating();
-
-					System.out.println(
-							"Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
-					scan.nextLine();
-					String seatChoice = scan.nextLine();
-
-					int num1Col = columnNum(seatChoice);
-					int num1Row = rowNum(seatChoice);
-
-					if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null) { // Is seat valid
-
-						if (currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer
-								.getId()) { // If Customer owns the seat
-							currentPlane.getSeats()[num1Row - 1][num1Col - 1] = null;
-							System.out.println("Reservation cancelled");
-
-						} else { // If they do not own the seat
-							System.out.println("You do not own this reservation");
-						}
-					} else { // Invalid seat
-						System.out.println("Invalid seat");
-					}
-
-				} else {// Date is not valid
-					System.out.println("Invalid date.");
-				}
+				cancelSeats(userID, currentCustomer, planes, c);
+//				System.out.println("Which date are you inquiring about?  "
+//						+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+//				int resDate = scan.nextInt();
+//
+//				if (resDate >= 1 && resDate <= 3) { // Date is valid
+//					NewPlane currentPlane = planes.get(resDate - 1);
+//					System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1)
+//							+ " scheduled to leave on " + currentPlane.getFlightDate());
+//
+//					currentPlane.printAllPlaneSeating();
+//
+//					System.out.println(
+//							"Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
+//					scan.nextLine();
+//					String seatChoice = scan.nextLine();
+//
+//					int num1Col = columnNum(seatChoice);
+//					int num1Row = rowNum(seatChoice);
+//
+//					if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null) { // Is seat valid
+//
+//						if (currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer
+//								.getId()) { // If Customer owns the seat
+//							currentPlane.getSeats()[num1Row - 1][num1Col - 1] = null;
+//							System.out.println("Reservation cancelled");
+//
+//						} else { // If they do not own the seat
+//							System.out.println("You do not own this reservation");
+//						}
+//					} else { // Invalid seat
+//						System.out.println("Invalid seat");
+//					}
+//
+//				} else {// Date is not valid
+//					System.out.println("Invalid date.");
+//				}
 
 			} else { // ID is not valid
 				System.out.println("ID not valid");
@@ -445,15 +445,61 @@ public class NewMenuInfo {
 
 			boolean found = false;
 			int i = 0;
-			while (!found && i < planes.size()) {
+			Customer currentCustomer = null;
+			int userID = 0;
+			
+			while (!found && i < c.size()) {
 				String foundFirst = c.get(i).getFirst();
 				String foundLast = c.get(i).getLast();
+				userID = c.get(i).getId();
 				if (foundFirst.equals(first) && foundLast.equals(last)) {
-					System.out.println("We found your ID based on your name: " + c.get(i).getId());
+					System.out.println("We found your ID based on your name: " + userID);
 					found = true;
+					currentCustomer = c.get(i);
 				}
 				i++;
 			}
+			cancelSeats(userID, currentCustomer, planes, c);
+		}
+	}
+	
+	public void cancelSeats(int id, Customer currentCustomer, ArrayList<NewPlane> planes, ArrayList<Customer> c) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Which date are you inquiring about?  "
+				+ "Type 1 for 12/1/2022, 2 for 12/2/2022, or 3 for 12/3/2022.");
+		int resDate = scan.nextInt();
+
+		if (resDate >= 1 && resDate <= 3) { // Date is valid
+			NewPlane currentPlane = planes.get(resDate - 1);
+			System.out.println("You are cancelling a reservation for Plane #" + (resDate + 1)
+					+ " scheduled to leave on " + currentPlane.getFlightDate());
+
+			currentPlane.printAllPlaneSeating();
+
+			System.out.println(
+					"Which reservation would you like to cancel? Type column letter and row number. Ex) A1");
+			scan.nextLine();
+			String seatChoice = scan.nextLine();
+
+			int num1Col = columnNum(seatChoice);
+			int num1Row = rowNum(seatChoice);
+
+			if (currentPlane.getSeats()[num1Row - 1][num1Col - 1] != null) { // Is seat valid
+
+				if (currentPlane.getSeats()[num1Row - 1][num1Col - 1].getCust().getId() == currentCustomer
+						.getId()) { // If Customer owns the seat
+					currentPlane.getSeats()[num1Row - 1][num1Col - 1] = null;
+					System.out.println("Reservation cancelled");
+
+				} else { // If they do not own the seat
+					System.out.println("You do not own this reservation");
+				}
+			} else { // Invalid seat
+				System.out.println("Invalid seat");
+			}
+
+		} else {// Date is not valid
+			System.out.println("Invalid date.");
 		}
 	}
 
