@@ -57,4 +57,5 @@ printPlaneSeating() now shows the seat ID and customer reservation ID
 Bug fixes
 Added different types of seating, like first class etc.
 Economy has a choice between, window, aisle, and normal seating
+Fixed ID search bug
 
